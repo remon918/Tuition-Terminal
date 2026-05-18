@@ -9,8 +9,8 @@ import avatar from "@/assets/user.png";
 
 const Navbar = () => {
   return (
-    <div className="pb-4 shadow-sm">
-      <div className="flex justify-between items-center w-[97%] mx-auto lg:w-[85%] md:w-[90%] mt-4 relative">
+    <div className="pb-2 shadow-sm">
+      <div className="flex justify-between items-center w-[97%] mx-auto lg:w-[85%] md:w-[90%] mt-2 p-3 rounded-2xl border border-white/40 bg-linear-to-r from-[#e9f6f3] to-[#eff8fbc5] backdrop-blur-md shadow-md relative">
         <div className="flex items-center gap-1">
           <DropDownMenu />
 

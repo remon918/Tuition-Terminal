@@ -6,14 +6,14 @@ import { FaFacebookSquare, FaUsers } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white pt-16 pb-8 mt-10">
+    <footer className="bg-black/90 text-white pt-16 pb-8 mt-10">
       <div className="w-[92%] mx-auto lg:w-[85%] md:w-[90%]">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div>
             <div className="flex items-center gap-2 mb-6">
               <Image
                 src={logo}
-                alt="Tution Terminal"
+                alt="Tuition Terminal"
                 className="h-8.5 w-auto rounded-full"
               />
               <h2 className="text-2xl font-bold">Tuition Terminal</h2>
