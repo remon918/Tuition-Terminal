@@ -125,7 +125,7 @@ const DropDownMenu = () => {
 
             <li>
               <NavLink
-                href={"/alltiles"}
+                href={"/tutors"}
                 onClick={() => setMenuOpen(false)}
               >
                 <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">

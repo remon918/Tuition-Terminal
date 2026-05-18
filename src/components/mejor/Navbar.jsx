@@ -16,7 +16,7 @@ const Navbar = () => {
 
           <h2 className="font-semibold text-lg md:font-bold text-blue-400  rounded-md md:text-2xl">
             <Link href="/">
-              Tuition Terminal
+              Tuition-Terminal
             </Link>
           </h2>
         </div>

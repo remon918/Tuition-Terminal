@@ -1,53 +1,70 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
-export default function TutorCard() {
+export default function TutorCard({ tutor }) {
   return (
-    <div className="flex items-center justify-center min-h-screen p-6">
-      <div className="w-full max-w-sm rounded-[30px] border border-gray-200 bg-white shadow-md p-5">
-        
-        {/* Image */}
-        <div className="relative w-full h-60 rounded-[22px] overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop"
-            alt="Tutor"
-            fill
-            className="object-cover"
-          />
-        </div>
+    <div className="w-full rounded-2xl border border-gray-200 bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      {/* Image */}
+      <div className="relative h-44 w-full overflow-hidden rounded-xl">
+        <Image
+          src={tutor?.image}
+          alt={tutor?.name}
+          fill
+          className="object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
 
-        {/* Content */}
-        <div className="mt-6">
-          <h2 className="text-[36px] font-bold text-black leading-none">
-            Rahim Ahmed
-          </h2>
+      {/* Content */}
+      <div className="mt-3">
+        {/* Name */}
+        <h2 className="line-clamp-1 text-xl font-bold text-black">
+          {tutor?.name}
+        </h2>
 
-          <p className="text-[#7B7B9D] text-[20px] mt-2">
-            Mathematics
+        {/* Subject */}
+        <p className="mt-0.5 text-sm font-medium text-[#00BBA7]">
+          {tutor?.subject}
+        </p>
+
+        {/* Details */}
+        <div className="mt-3 space-y-1.5 text-sm text-black">
+          <p>
+            <span className="font-semibold">Location:</span>{" "}
+            {tutor?.location}
           </p>
 
-          <div className="mt-6 space-y-3 text-black">
-            <p className="text-[18px]">
-              <span className="font-medium">Available:</span>{" "}
-              Sun - Thu 5:00 PM - 8:00 PM
-            </p>
+          <p>
+            <span className="font-semibold">Available:</span>{" "}
+            {tutor?.availableTime}
+          </p>
 
-            <p className="text-[18px]">
-              <span className="font-medium">Session Start Date:</span>{" "}
-              Monday, June 1, 2026
-            </p>
+          <p>
+            <span className="font-semibold">Available Slot:</span>{" "}
+            {tutor?.availableSlots}
+          </p>
 
-            <p className="text-[18px]">
-              <span className="font-medium">Fee:</span> ৳500/hr
+          <div className="flex items-center justify-between pt-1">
+            <span className="flex gap-1 items-center font-semibold">
+              Fees:
+            <p className="text-base font-bold text-[#00BBA7]">
+              ৳{tutor?.hourlyRate}/hr
             </p>
+            </span>
+
+            <div className="rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-semibold text-yellow-700">
+              ⭐ {tutor?.rating}
+            </div>
           </div>
-
-          {/* Button */}
-          <button className="w-full mt-8 bg-[#1edccf] hover:bg-[#089187] transition-all duration-300 text-white text-[28px] font-semibold py-4 rounded-2xl">
-            Book Session
-          </button>
         </div>
+
+        {/* Button */}
+        <button className="mt-4 w-full rounded-lg bg-[#1edccf] py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#089187]">
+          <Link href={`/tutors/${tutor?._id}`}>
+          Book Session
+          </Link>
+        </button>
       </div>
     </div>
   );

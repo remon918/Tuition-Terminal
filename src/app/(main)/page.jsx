@@ -1,11 +1,11 @@
 import Banner from "@/components/mejor/Banner";
-import TutorCard from "@/components/mejor/TutorCard";
+import BestTutors from "@/components/minor/BestTutors";
 
 export default function Home() {
   return (
     <div>
       <Banner />
-      <TutorCard />
+      <BestTutors />
     </div>
   );
 }
