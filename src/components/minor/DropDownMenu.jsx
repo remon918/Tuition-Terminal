@@ -1,53 +1,174 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 import NavLink from "./NavLink";
 
 const DropDownMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const menuRef = useRef(null);
+
+  // body scroll lock
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menuOpen]);
+
+  // outside click close
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+    }
+
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+    };
+  }, [menuOpen]);
+
   return (
-    <div className="md:hidden relative">
+    <div
+      ref={menuRef}
+      className="md:hidden relative z-999999"
+    >
+      {/* BUTTON */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="flex flex-col gap-1 p-1 cursor-pointer"
-        suppressHydrationWarning={true} 
+        className="relative z-999999 flex flex-col justify-center items-center gap-1.5 w-9 h-9 rounded-xl bg-white shadow-lg border border-purple-200"
       >
-        <span className="block w-5 h-0.5 bg-gray-700"></span>
-        <span className="block w-5 h-0.5 bg-gray-700"></span>
-        <span className="block w-5 h-0.5 bg-gray-700"></span>
+        <span
+          className={`w-5 h-0.5 bg-purple-700 rounded-full transition-all duration-300 ${
+            menuOpen ? "rotate-45 translate-y-2" : ""
+          }`}
+        />
+
+        <span
+          className={`w-5 h-0.5 bg-purple-700 rounded-full transition-all duration-300 ${
+            menuOpen ? "opacity-0" : ""
+          }`}
+        />
+
+        <span
+          className={`w-5 h-0.5 bg-purple-700 rounded-full transition-all duration-300 ${
+            menuOpen ? "-rotate-45 -translate-y-2" : ""
+          }`}
+        />
       </button>
 
-      {menuOpen && (
-        <ul className="absolute top-full left-0 mt-2 w-44 bg-gray-300 border border-gray-500 rounded-md shadow-lg z-500">
-          <li className="border-b border-gray-700">
-            <NavLink href={"/"} onClick={() => setMenuOpen(false)}>
-              <span className="block px-4 py-3 text-sm text-gray-900 hover:bg-purple-500/20">
-                Home
-              </span>
-            </NavLink>
-          </li>
-          <li className="border-b border-gray-700">
-            <NavLink href={"/alltiles"} onClick={() => setMenuOpen(false)}>
-              <span className="block px-4 py-3 text-sm text-gray-900 hover:bg-purple-500/20">
-                All Tiles
-              </span>
-            </NavLink>
-          </li>
-          <li className="border-b border-gray-700">
-            <NavLink href={"/tiles-cart"} onClick={() => setMenuOpen(false)}>
-              <span className="block px-4 py-3 text-sm text-gray-900 hover:bg-purple-500/20">
-                Tiles Cart
-              </span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink href={"/profile"} onClick={() => setMenuOpen(false)}>
-              <span className="block px-4 py-3 text-sm text-gray-900 hover:bg-purple-500/20">
-                Profile
-              </span>
-            </NavLink>
-          </li>
-        </ul>
-      )}
+      {/* BACKDROP */}
+      <div
+        className={`fixed inset-0 bg-black/40 transition-all duration-300 z-999997
+        ${
+          menuOpen
+            ? "opacity-100 visible"
+            : "opacity-0 invisible"
+        }`}
+      />
+
+      {/* DROPDOWN */}
+      <div
+        className={`absolute top-14 left-0 w-64 rounded-3xl
+        bg-white/95 backdrop-blur-2xl border border-white/20
+        shadow-[0_20px_60px_rgba(0,0,0,0.25)]
+        transition-all duration-300 z-999998
+        ${
+          menuOpen
+            ? "opacity-100 translate-y-0 scale-100 visible"
+            : "opacity-0 -translate-y-5 scale-95 invisible"
+        }`}
+      >
+        <div className="p-3">
+          {/* TOP SECTION */}
+          <div className="mb-3 px-4 py-3 rounded-2xl bg-linear-to-r from-purple-500 to-indigo-500 text-white">
+            <h3 className="font-semibold text-lg">
+              Welcome 👋
+            </h3>
+
+            <p className="text-sm text-white/80 mt-1">
+              Explore tutors & services
+            </p>
+          </div>
+
+          {/* MENU */}
+          <ul className="space-y-2">
+            <li>
+              <NavLink
+                href={"/"}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
+                  🏠 Home
+                </span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                href={"/alltiles"}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
+                  👨‍🏫 Tutors
+                </span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                href={"/tiles-cart"}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
+                  ✨ Services
+                </span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                href={"/profile"}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
+                  ℹ️ About
+                </span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                href={"/contact"}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
+                  📩 Contact
+                </span>
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

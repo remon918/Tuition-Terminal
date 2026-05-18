@@ -16,13 +16,17 @@ const slides = [
 
     Title: "Find Your Tutor",
     titleHighlight: "Shape Future Minds",
+
     description:
       "Join thousands of educators earning while making a difference. Flexible schedules, competitive pay, and endless opportunities.",
 
     primaryBtn: "from-blue-500 to-purple-600",
-    secondaryBtn: "border-white/50 hover:bg-white/10 text-white",
+
+    secondaryBtn:
+      "border-white/50 hover:bg-white/10 text-white",
 
     stats1Bg: "from-blue-500/30 to-cyan-400/20",
+
     stats2Bg: "from-purple-500/30 to-pink-500/20",
 
     badgeColor: "text-blue-300",
@@ -34,15 +38,19 @@ const slides = [
       "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop",
 
     Title: "Become a Tutor",
+
     titleHighlight: "Teach Anywhere",
+
     description:
       "Work remotely with students from around the world and grow your professional teaching career online.",
 
     primaryBtn: "from-emerald-500 to-teal-600",
+
     secondaryBtn:
       "border-emerald-300/50 hover:bg-emerald-500/10 text-emerald-100",
 
     stats1Bg: "from-emerald-500/30 to-teal-400/20",
+
     stats2Bg: "from-lime-500/30 to-green-500/20",
 
     badgeColor: "text-emerald-300",
@@ -56,13 +64,17 @@ const slides = [
     Title: "Become a Tutor",
 
     titleHighlight: "Inspire Students",
+
     description:
       "Create impact through personalized education while building a trusted tutoring profile and steady income.",
 
     primaryBtn: "from-orange-500 to-red-500",
-    secondaryBtn: "border-orange-300/50 hover:bg-orange-500/10 text-orange-100",
+
+    secondaryBtn:
+      "border-orange-300/50 hover:bg-orange-500/10 text-orange-100",
 
     stats1Bg: "from-orange-500/30 to-yellow-400/20",
+
     stats2Bg: "from-red-500/30 to-pink-500/20",
 
     badgeColor: "text-orange-300",
@@ -71,7 +83,7 @@ const slides = [
 
 export default function Banner() {
   return (
-    <div className="w-full h-175 md:h-162.5 lg:h-180">
+    <div className="relative z-0 w-full h-175 md:h-162.5 lg:h-180 overflow-visible">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
@@ -81,18 +93,20 @@ export default function Banner() {
           disableOnInteraction: false,
         }}
         loop={true}
-        className="h-full"
+        className="h-full overflow-visible"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div
-              className="relative w-full md:px-13 h-full bg-center bg-cover overflow-hidden"
+              className="relative w-full md:px-13 h-full bg-center bg-cover overflow-visible"
               style={{
                 backgroundImage: `url(${slide.image})`,
               }}
             >
-              <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/70"></div>
+              {/* Overlay */}
+              <div className="absolute inset-0 z-0 bg-linear-to-r from-black/80 via-black/60 to-black/70"></div>
 
+              {/* LEFT CONTENT */}
               <div className="relative z-10 flex flex-col items-start justify-center h-full text-left px-6 md:px-12 lg:px-20 max-w-4xl">
                 <motion.div
                   initial={{ opacity: 0, y: -30 }}
@@ -109,7 +123,7 @@ export default function Banner() {
                   transition={{ duration: 0.8 }}
                   className="text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
                 >
-                  {slide.Title} {""} &amp;{" "}
+                  {slide.Title} &amp;{" "}
                   <span
                     className={`bg-linear-to-r ${slide.primaryBtn} bg-clip-text text-transparent`}
                   >
@@ -126,6 +140,7 @@ export default function Banner() {
                   {slide.description}
                 </motion.p>
 
+                {/* BADGES */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -141,6 +156,7 @@ export default function Banner() {
                   </div>
                 </motion.div>
 
+                {/* BUTTONS */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -161,7 +177,9 @@ export default function Banner() {
                 </motion.div>
               </div>
 
-              <div className="absolute top-0 right-0 w-full h-full hidden lg:block pointer-events-none">
+              {/* RIGHT FLOATING CARDS */}
+              <div className="absolute top-0 right-0 w-full h-full hidden lg:block pointer-events-none z-10">
+                {/* CARD 1 */}
                 <motion.div
                   initial={{ opacity: 0, x: 100 }}
                   animate={{
@@ -182,13 +200,16 @@ export default function Banner() {
                   backdrop-blur-xl border border-white/20
                   rounded-3xl p-6 text-center shadow-2xl`}
                 >
-                  <div className="text-4xl font-bold text-white">150K+</div>
+                  <div className="text-4xl font-bold text-white">
+                    150K+
+                  </div>
 
                   <div className="text-sm tracking-widest text-gray-200 mt-1">
                     ACTIVE TUTORS
                   </div>
                 </motion.div>
 
+                {/* CARD 2 */}
                 <motion.div
                   initial={{ opacity: 0, x: 100 }}
                   animate={{
@@ -209,7 +230,9 @@ export default function Banner() {
                   backdrop-blur-xl border border-white/20
                   rounded-3xl p-6 text-center shadow-2xl`}
                 >
-                  <div className="text-4xl font-bold text-white">50K+</div>
+                  <div className="text-4xl font-bold text-white">
+                    50K+
+                  </div>
 
                   <div className="text-sm tracking-widest text-gray-200 mt-1">
                     STUDENTS HELPED
