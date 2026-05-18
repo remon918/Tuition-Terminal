@@ -1,2 +1,20 @@
 @import "tailwindcss";
 @import "@heroui/styles"; 
+
+:root[data-theme="deepBlue"] {
+  background: linear-gradient(
+    to bottom,
+    #06152b,
+    #0a2342,
+    #102f56
+  );
+
+  color: white;
+}
+
+:root[data-theme="deepBlue"] body {
+  background: transparent;
+  color: white;
+  transition: all 0.3s ease;
+}
+
