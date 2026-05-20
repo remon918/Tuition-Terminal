@@ -1,4 +1,5 @@
 import Banner from "@/components/mejor/Banner";
+import WorkingGuide from "@/components/mejor/WorkingGuide";
 import BestTutors from "@/components/minor/BestTutors";
 
 export const metadata = {
@@ -10,6 +11,7 @@ export default function Home() {
     <div>
       <Banner />
       <BestTutors />
+      <WorkingGuide />
     </div>
 
   );
