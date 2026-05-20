@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Scroll from "@/components/minor/Scroll";
 import ThemeController from "@/components/minor/ThemeController";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Tution Terminal",
+  title: "Tuition Terminal",
   description: "Best place to find tutors in Bangladesh",
 };
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         {children}
         <ThemeController />
         <Scroll />
+        <Toaster  position="bottom-right" />
         </body>
     </html>
   );

@@ -2,19 +2,42 @@ import Image from "next/image";
 import { FaStar, FaUserGraduate, FaMapMarkerAlt } from "react-icons/fa";
 import { MdAccessTime, MdSchool, MdOutlineModeEdit } from "react-icons/md";
 import { HiMiniCurrencyDollar } from "react-icons/hi2";
+import BookingCard from "@/components/minor/BookingCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-const fetchTutorDetails = async (id) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tutors/${id}`, {
-    cache: "no-store",
-  });
+export const metadata = {
+  title: "Tutor Details",
+}
+
+const fetchTutorDetails = async (id, token) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/tutors/${id}`,
+    {
+      cache: "no-store",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   const data = await res.json();
+
   return data || {};
 };
 
+
+
 const TutorDetailsPage = async ({ params }) => {
+
   const { id } = await params;
-  const tutor = await fetchTutorDetails(id);
+
+  const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+
+  const tutor = await fetchTutorDetails(id, token);
+
 
   return (
     <div className="min-h-screen px-4 py-10">
@@ -113,7 +136,7 @@ const TutorDetailsPage = async ({ params }) => {
 
                 <h3
                   className={`text-xl font-bold ${
-                    tutor?.availableSlots <= 5
+                    Number(tutor?.availableSlots) === 0
                       ? "text-red-500"
                       : "text-green-600"
                   }`}
@@ -122,9 +145,7 @@ const TutorDetailsPage = async ({ params }) => {
                 </h3>
               </div>
 
-              <button className="rounded-2xl bg-teal-500 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-teal-400 active:scale-95">
-                Book Session
-              </button>
+              <BookingCard tutor={tutor} />
             </div>
           </div>
         </div>

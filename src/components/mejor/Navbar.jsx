@@ -6,80 +6,125 @@ import Link from "next/link";
 import NavLink from "../minor/NavLink";
 import Image from "next/image";
 import avatar from "@/assets/user.png";
+import { signOut, useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-  return (
-    <div className=" pb-2 shadow-sm relative z-999999">
-     <div className="flex justify-between items-center w-[97%] mx-auto lg:w-[85%] md:w-[90%] mt-2 p-3 rounded-2xl border border-white/40 bg-linear-to-r from-[#e9f6f3] to-[#eff8fbc5]  shadow-md relative z-999999 overflow-visible">
-        <div className="flex items-center gap-1">
-          <DropDownMenu />
+  const router = useRouter();
 
-          <h2 className="font-semibold text-lg md:font-bold text-blue-400  rounded-md md:text-2xl">
-            <Link href="/">
-              Tuition-Terminal
-            </Link>
+  const { data: session, isPending } = useSession();
+
+  const handleLogout = async () => {
+    await signOut();
+
+    router.refresh();
+    router.push("/");
+  };
+
+  // MENU ITEMS
+  const loggedInMenus = [
+    { name: "Home", href: "/", icon: "🏠" },
+    { name: "Tutors", href: "/tutors", icon: "👨‍🏫" },
+    { name: "Add Tutors", href: "/add-tutors", icon: "➕" },
+    { name: "My Tutors", href: "/my-tutors", icon: "📚" },
+    {
+      name: "My Booked Session",
+      href: "/my-booked-session",
+      icon: "📅",
+    },
+  ];
+
+  const loggedOutMenus = [
+    { name: "Home", href: "/", icon: "🏠" },
+    { name: "Tutors", href: "/tutors", icon: "👨‍🏫" },
+    { name: "Services", href: "/services", icon: "✨" },
+    { name: "About", href: "/about", icon: "ℹ️" },
+    { name: "Contact", href: "/contact", icon: "📩" },
+  ];
+
+  const menus = session?.user ? loggedInMenus : loggedOutMenus;
+
+  return (
+    <div className="relative z-999999 pb-2">
+      <div className="mx-auto mt-2 flex w-[97%] items-center justify-between overflow-visible rounded-2xl border border-base-300 bg-base-100/80 p-3 shadow-md backdrop-blur-md lg:w-[85%] md:w-[90%]">
+        
+        {/* Logo */}
+        <div className="flex items-center gap-1">
+          <DropDownMenu menus={menus} />
+
+          <h2 className="rounded-md text-lg font-semibold text-primary md:text-2xl md:font-bold">
+            <Link href="/">Tuition-Terminal</Link>
           </h2>
         </div>
-        <ul className="gap-7 lg:gap-7 md:gap-2 font-medium text-gray-700 md:flex hidden text-center">
-          <li className="hover:bg-gray-200 p-1">
-            <NavLink href={"/"}>Home</NavLink>
-          </li>
-          <li className="hover:bg-gray-200 p-1">
-            <NavLink href={"/tutors"}>Tutors</NavLink>
-          </li>
-          <li className="hover:bg-gray-200 p-1">
-            <NavLink href={"/tiles-cart"}>Services</NavLink>
-          </li>
-          <li className="hover:bg-gray-200 p-1">
-            <NavLink href={"/profile"}>About</NavLink>
-          </li>
-          <li className="hover:bg-gray-200 p-1">
-            <NavLink href={"/profile"}>Contact</NavLink>
-          </li>
+
+        {/* DESKTOP MENU */}
+        <ul className="hidden gap-7 text-center font-medium text-base-content md:flex md:gap-2 lg:gap-7">
+          {menus.map((menu) => (
+            <li
+              key={menu.href}
+              className="rounded-md px-2 py-1 transition hover:bg-base-200"
+            >
+              <NavLink href={menu.href}>
+                {menu.name}
+              </NavLink>
+            </li>
+          ))}
         </ul>
 
-        <div className="flex justify-center items-center md:gap-3 gap-1">
-          
-            <div className="flex gap-1 md:gap-2 items-center">
+        {/* Auth Section */}
+        <div className="flex items-center justify-center gap-1 md:gap-3">
+          {isPending ? (
+            <div className="h-9 w-28 animate-pulse rounded-md bg-base-300"></div>
+          ) : session?.user ? (
+            <div className="flex items-center gap-2">
               <Link href={"/profile"}>
                 <Image
-                  className="mx-auto rounded-full mr-0.5 md:mr-1 "
-                  src={avatar}
-                  width={32}
-                  height={30}
+                  referrerPolicy="no-referrer"
+                  className="rounded-full border border-base-300"
+                  src={
+                    session?.user?.image &&
+                    session.user.image.startsWith("http")
+                      ? session.user.image
+                      : avatar
+                  }
+                  width={38}
+                  height={38}
                   alt="avatar"
                 />
               </Link>
+
               <button
-                suppressHydrationWarning={true}
-                className="btn bg-red-500 hover:bg-red-400 text-white md:px-4 px-1 text-sm"
+                onClick={handleLogout}
+                className="rounded-md bg-error px-2 py-1.5 text-sm bg-red-500 text-error-content transition hover:opacity-90 md:px-4 md:py-2"
               >
                 Logout
               </button>
             </div>
-         
-            <div className="flex items-center gap-1 md:gap-3">
+          ) : (
+            <div className="flex items-center gap-2">
               <Image
-                className="mr-0.5 md:mr-1 rounded-full"
+                className="rounded-full border border-base-300"
                 src={avatar}
-                width={30}
-                height={15}
+                width={32}
+                height={32}
                 alt="avatar"
               />
+
               <Link
                 href={"/signup"}
-                className="btn text-sm bg-blue-500 text-white font-semibold p-1.5 md:p-2 md:px-6 rounded-md hover:bg-blue-400"
+                className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-content transition hover:opacity-90"
               >
                 Sign Up
               </Link>
+
               <Link
                 href={"/login"}
-                className="btn bg-purple-500 text-white p-1.5 md:p-2 md:px-6 text-sm font-semibold rounded-md hover:bg-purple-400"
+                className="rounded-md bg-secondary px-3 py-2 text-sm font-semibold text-secondary-content transition hover:opacity-90"
               >
                 Login
               </Link>
             </div>
-          
+          )}
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import NavLink from "./NavLink";
 
-const DropDownMenu = () => {
+const DropDownMenu = ({ menus }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const menuRef = useRef(null);
@@ -24,38 +24,26 @@ const DropDownMenu = () => {
   // outside click close
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target)
-      ) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
         setMenuOpen(false);
       }
     };
 
     if (menuOpen) {
-      document.addEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuOpen]);
 
   return (
-    <div
-      ref={menuRef}
-      className="md:hidden relative z-999999"
-    >
+    <div ref={menuRef} className="md:hidden relative z-999999">
       {/* BUTTON */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="relative z-999999 flex flex-col justify-center items-center gap-1.5 w-9 h-9 rounded-xl bg-white shadow-lg border border-purple-200"
+        className="relative z-999999 flex flex-col justify-center items-center gap-1.5 w-9 h-9 rounded-xl bg-base-content shadow-lg border-purple-200"
       >
         <span
           className={`w-5 h-0.5 bg-purple-700 rounded-full transition-all duration-300 ${
@@ -79,11 +67,7 @@ const DropDownMenu = () => {
       {/* BACKDROP */}
       <div
         className={`fixed inset-0 bg-black/40 transition-all duration-300 z-999997
-        ${
-          menuOpen
-            ? "opacity-100 visible"
-            : "opacity-0 invisible"
-        }`}
+        ${menuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
       />
 
       {/* DROPDOWN */}
@@ -101,9 +85,7 @@ const DropDownMenu = () => {
         <div className="p-3">
           {/* TOP SECTION */}
           <div className="mb-3 px-4 py-3 rounded-2xl bg-linear-to-r from-purple-500 to-indigo-500 text-white">
-            <h3 className="font-semibold text-lg">
-              Welcome 👋
-            </h3>
+            <h3 className="font-semibold text-lg">Welcome 👋</h3>
 
             <p className="text-sm text-white/80 mt-1">
               Explore tutors & services
@@ -112,60 +94,18 @@ const DropDownMenu = () => {
 
           {/* MENU */}
           <ul className="space-y-2">
-            <li>
-              <NavLink
-                href={"/"}
-                onClick={() => setMenuOpen(false)}
-              >
-                <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
-                  🏠 Home
-                </span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                href={"/tutors"}
-                onClick={() => setMenuOpen(false)}
-              >
-                <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
-                  👨‍🏫 Tutors
-                </span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                href={"/tiles-cart"}
-                onClick={() => setMenuOpen(false)}
-              >
-                <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
-                  ✨ Services
-                </span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                href={"/profile"}
-                onClick={() => setMenuOpen(false)}
-              >
-                <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
-                  ℹ️ About
-                </span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                href={"/contact"}
-                onClick={() => setMenuOpen(false)}
-              >
-                <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
-                  📩 Contact
-                </span>
-              </NavLink>
-            </li>
+            {menus.map((menu) => (
+              <li key={menu.href}>
+                <NavLink
+                  href={menu.href}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <span className="flex items-center gap-3 rounded-2xl px-4 py-3 text-gray-700 font-medium hover:bg-purple-500/10 hover:text-purple-700 transition-all duration-200">
+                    {menu.icon} {menu.name}
+                  </span>
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

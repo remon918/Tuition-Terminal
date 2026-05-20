@@ -8,7 +8,7 @@ const BestTutors = async() => {
          <div className="">
               <h2 className="font-bold text-2xl  md:text-3xl text-center mt-30 mb-10">
                 {" "}
-                <span className="text-gray-700 border-b-2 border-b-gray-400">Best Tutors 🎓</span>
+                <span className="text-base-content border-b-2 border-b-base-content/70">Best Tutors 🎓</span>
               </h2>
               <div className="w-[98%] mx-auto lg:w-[87%] md:w-[90%] p-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {tutors?.map((tutor) => (
