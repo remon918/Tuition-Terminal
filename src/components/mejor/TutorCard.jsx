@@ -3,10 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function TutorCard({ tutor }) {
+const TutorCard =({ tutor }) => {
   return (
     <div className="w-full rounded-2xl border border-gray-200 bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-      {/* Image */}
       <div className="relative h-44 w-full overflow-hidden rounded-xl">
         <Image
           src={tutor?.image}
@@ -16,19 +15,15 @@ export default function TutorCard({ tutor }) {
         />
       </div>
 
-      {/* Content */}
       <div className="mt-3">
-        {/* Name */}
         <h2 className="line-clamp-1 text-xl font-bold text-black">
           {tutor?.name}
         </h2>
 
-        {/* Subject */}
         <p className="mt-0.5 text-sm font-medium text-[#00BBA7]">
           {tutor?.subject}
         </p>
 
-        {/* Details */}
         <div className="mt-3 space-y-1.5 text-sm text-black">
           <p>
             <span className="font-semibold">Available:</span>{" "}
@@ -58,8 +53,6 @@ export default function TutorCard({ tutor }) {
           </div>
         </div>
 
-        {/* Button */}
-
         <Link className="cursor-pointer" href={`/tutors/${tutor?._id}`}>
           <button className="mt-4 w-full cursor-pointer rounded-lg bg-[#1edccf] py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#089187]">
             Book Session
@@ -69,3 +62,4 @@ export default function TutorCard({ tutor }) {
     </div>
   );
 }
+export default TutorCard ;

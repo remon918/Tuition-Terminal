@@ -21,9 +21,9 @@ const Navbar = () => {
     router.push("/");
   };
 
-  // MENU ITEMS
   const loggedInMenus = [
     { name: "Home", href: "/", icon: "🏠" },
+    { name: "Profile", href: "/profile", icon: "👤" },
     { name: "Tutors", href: "/tutors", icon: "👨‍🏫" },
     { name: "Add Tutors", href: "/add-tutors", icon: "➕" },
     { name: "My Tutors", href: "/my-tutors", icon: "📚" },
@@ -37,8 +37,10 @@ const Navbar = () => {
   const loggedOutMenus = [
     { name: "Home", href: "/", icon: "🏠" },
     { name: "Tutors", href: "/tutors", icon: "👨‍🏫" },
+    { name: "Profile", href: "/profile", icon: "👤" },
     { name: "Services", href: "/services", icon: "✨" },
     { name: "About", href: "/about", icon: "ℹ️" },
+
     { name: "Contact", href: "/contact", icon: "📩" },
   ];
 
@@ -47,8 +49,6 @@ const Navbar = () => {
   return (
     <div className="relative z-999999 pb-2">
       <div className="mx-auto mt-2 flex w-[97%] items-center justify-between overflow-visible rounded-2xl border border-base-300 bg-base-100/80 p-3 shadow-md backdrop-blur-md lg:w-[85%] md:w-[90%]">
-        
-        {/* Logo */}
         <div className="flex items-center gap-1">
           <DropDownMenu menus={menus} />
 
@@ -57,21 +57,17 @@ const Navbar = () => {
           </h2>
         </div>
 
-        {/* DESKTOP MENU */}
         <ul className="hidden gap-7 text-center font-medium text-base-content md:flex md:gap-2 lg:gap-7">
           {menus.map((menu) => (
             <li
               key={menu.href}
               className="rounded-md px-2 py-1 transition hover:bg-base-200"
             >
-              <NavLink href={menu.href}>
-                {menu.name}
-              </NavLink>
+              <NavLink href={menu.href}>{menu.name}</NavLink>
             </li>
           ))}
         </ul>
 
-        {/* Auth Section */}
         <div className="flex items-center justify-center gap-1 md:gap-3">
           {isPending ? (
             <div className="h-9 w-28 animate-pulse rounded-md bg-base-300"></div>
@@ -95,7 +91,7 @@ const Navbar = () => {
 
               <button
                 onClick={handleLogout}
-                className="rounded-md bg-error px-2 py-1.5 text-sm bg-red-500 text-error-content transition hover:opacity-90 md:px-4 md:py-2"
+                className="rounded-md bg-error px-2 py-1.5 cursor-pointer text-sm bg-red-500 text-error-content transition hover:opacity-90 md:px-4 md:py-2"
               >
                 Logout
               </button>

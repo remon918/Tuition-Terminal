@@ -60,7 +60,6 @@ const Edit = ({ tutor }) => {
 
     setOpen(false);
 
-    // instant ui update
     router.refresh();
   };
 
@@ -68,7 +67,6 @@ const Edit = ({ tutor }) => {
 
   return (
     <>
-      {/* Edit Button */}
       <button
         onClick={() => setOpen(true)}
         className="text-green-500 transition hover:scale-110"
@@ -76,11 +74,9 @@ const Edit = ({ tutor }) => {
         <Pencil size={18} />
       </button>
 
-      {/* Modal */}
       {open && (
         <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/40 p-3 backdrop-blur-sm">
           <div className="relative max-h-[95vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-base-300 bg-base-100 p-4 shadow-2xl sm:p-5 md:p-6">
-            {/* Close Button */}
             <button
               onClick={() => setOpen(false)}
               className="absolute right-3 top-3 rounded-full p-2 text-base-content/70 transition hover:bg-base-200 hover:text-red-500"
@@ -88,7 +84,6 @@ const Edit = ({ tutor }) => {
               <X size={18} />
             </button>
 
-            {/* Heading */}
             <div className="mb-5 text-center">
               <h1 className="text-xl font-bold text-base-content sm:text-2xl">
                 Edit Tutor ✏️
@@ -99,12 +94,10 @@ const Edit = ({ tutor }) => {
               </p>
             </div>
 
-            {/* Form */}
             <form
               onSubmit={onSubmit}
               className="grid grid-cols-1 gap-4 md:grid-cols-2"
             >
-              {/* Tutor Name */}
               <div>
                 <label className="mb-1.5 block text-sm text-base-content">
                   Tutor Name
@@ -118,7 +111,6 @@ const Edit = ({ tutor }) => {
                 />
               </div>
 
-              {/* Subject */}
               <div>
                 <label className="mb-1.5 block text-sm text-base-content">
                   Subject
@@ -135,7 +127,6 @@ const Edit = ({ tutor }) => {
                 </select>
               </div>
 
-              {/* Available */}
               <div>
                 <label className="mb-1.5 block text-sm text-base-content">
                   Available Time
@@ -149,7 +140,6 @@ const Edit = ({ tutor }) => {
                 />
               </div>
 
-              {/* Hourly Fee */}
               <div>
                 <label className="mb-1.5 block text-sm text-base-content">
                   Hourly Fee
@@ -163,7 +153,6 @@ const Edit = ({ tutor }) => {
                 />
               </div>
 
-              {/* Slots */}
               <div>
                 <label className="mb-1.5 block text-sm text-base-content">
                   Total Slot
@@ -177,7 +166,6 @@ const Edit = ({ tutor }) => {
                 />
               </div>
 
-              {/* Teaching Mode */}
               <div>
                 <label className="mb-1.5 block text-sm text-base-content">
                   Teaching Mode
@@ -194,7 +182,6 @@ const Edit = ({ tutor }) => {
                 </select>
               </div>
 
-              {/* Experience */}
               <div className="md:col-span-2">
                 <label className="mb-1.5 block text-sm text-base-content">
                   Experience
@@ -207,7 +194,6 @@ const Edit = ({ tutor }) => {
                 />
               </div>
 
-              {/* Buttons */}
               <div className="mt-2 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end md:col-span-2">
                 <button
                   type="button"

@@ -13,8 +13,7 @@ const Delete = ({ id }) => {
 
   const handleDelete = async () => {
     const { data: tokenData } = await authClient.token();
-    console.log(tokenData);
-
+    // console.log(tokenData);
     const deletePromise = fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/addedtutors/${id}`,
       {
@@ -40,7 +39,6 @@ const Delete = ({ id }) => {
 
   return (
     <>
-      {/* Delete Button */}
       <button
         onClick={() => setOpen(true)}
         className="text-red-500 transition hover:scale-110"
@@ -48,11 +46,9 @@ const Delete = ({ id }) => {
         <Trash2 size={18} />
       </button>
 
-      {/* Modal */}
       {open && (
         <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
           <div className="w-full max-w-sm rounded-2xl border border-base-300 bg-base-100 p-6 shadow-2xl">
-            {/* Top */}
             <div className="flex items-start justify-between">
               <div>
                 <h2 className="text-lg font-bold text-base-content mb-2">
@@ -72,7 +68,6 @@ const Delete = ({ id }) => {
               </button>
             </div>
 
-            {/* Buttons */}
             <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
               <button
                 onClick={() => setOpen(false)}

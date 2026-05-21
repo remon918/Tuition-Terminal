@@ -4,14 +4,14 @@ import nagad from "@/assets/nagad.png";
 import Image from "next/image";
 import { FaFacebookSquare, FaUsers } from "react-icons/fa";
 
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className="pt-16 pb-8 mt-10 border-t border-base-300 transition-colors duration-300">
       <div className="w-[92%] mx-auto lg:w-[85%] md:w-[90%]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4
-         gap-12">
-
-          {/* Logo + Description */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4
+         gap-12"
+        >
           <div>
             <div className="flex items-center gap-2 mb-6">
               <Image
@@ -32,7 +32,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="text-2xl font-bold mb-6 text-base-content">
               Quick Link
@@ -55,7 +54,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
           <div>
             <h3 className="text-2xl font-bold mb-6 text-base-content">
               Company
@@ -73,7 +71,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social */}
           <div>
             <h3 className="text-2xl font-bold mb-6 text-base-content">
               Socials
@@ -93,13 +90,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="border-t border-base-300 my-10"></div>
 
-        {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-
-          {/* Payment */}
           <div className="flex items-center">
             <span className="font-semibold text-[15px] text-base-content">
               We accept :
@@ -118,12 +111,10 @@ export default function Footer() {
             />
           </div>
 
-          {/* Copyright */}
           <div className="text-sm text-center text-base-content/60">
             2026 @tuitionterminal. All rights reserved.
           </div>
 
-          {/* Developer */}
           <div className="text-sm text-base-content/60">
             Developed by:{" "}
             <span className="font-medium text-base-content">
@@ -134,4 +125,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

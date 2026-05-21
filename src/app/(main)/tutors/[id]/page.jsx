@@ -5,7 +5,6 @@ import { HiMiniCurrencyDollar } from "react-icons/hi2";
 import BookingCard from "@/components/minor/BookingCard";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import Link from "next/link";
 
 export const metadata = {
   title: "Tutor Details",
@@ -46,10 +45,8 @@ const TutorDetailsPage = async ({ params }) => {
                 className="object-cover"
               />
 
-              {/* overlay */}
               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
 
-              {/* rating */}
               <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 shadow-md backdrop-blur">
                 <FaStar className="text-yellow-500" />
                 <span className="font-semibold text-gray-800">
@@ -57,7 +54,6 @@ const TutorDetailsPage = async ({ params }) => {
                 </span>
               </div>
 
-              {/* students */}
               <div className="absolute bottom-5 left-5 flex items-center gap-2 rounded-full bg-purple-600 px-4 py-2 text-white shadow-lg">
                 <FaUserGraduate />
                 <span>{tutor?.students}+ Students</span>
@@ -65,9 +61,7 @@ const TutorDetailsPage = async ({ params }) => {
             </div>
           </div>
 
-          {/* RIGHT SIDE CONTENT */}
           <div className="flex flex-col justify-center p-8 lg:p-12">
-            {/* heading */}
             <div className="mb-8">
               <p className="mb-2 inline-block rounded-full bg-purple-100 px-4 py-1 text-sm font-medium text-teal-500">
                 🎓 Best Tutor
@@ -80,7 +74,6 @@ const TutorDetailsPage = async ({ params }) => {
               <p className="mt-2 text-lg text-teal-500">{tutor?.subject}</p>
             </div>
 
-            {/* info */}
             <div className="space-y-5">
               <div className="flex items-start gap-3">
                 <MdSchool className="mt-1 text-xl text-purple-600" />
@@ -123,7 +116,6 @@ const TutorDetailsPage = async ({ params }) => {
               </div>
             </div>
 
-            {/* bottom section */}
             <div className="mt-10 flex gap-5  items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Remaining Slots:</p>

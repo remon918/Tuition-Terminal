@@ -22,7 +22,6 @@ const MyTutorsPage = async () => {
 
   return (
     <div className="min-h-screen px-4 py-8">
-      {/* Heading */}
       <div className="mx-auto mb-8 max-w-7xl text-center">
         <h1 className="text-4xl font-bold text-base-content">My Tutors 👨‍🏫</h1>
 
@@ -31,7 +30,6 @@ const MyTutorsPage = async () => {
         </p>
       </div>
 
-      {/* Table */}
       <div className="mx-auto max-w-7xl overflow-x-auto rounded-3xl border border-base-300 bg-base-100 p-5">
         <table className="min-w-225 w-full border-collapse">
           <thead>

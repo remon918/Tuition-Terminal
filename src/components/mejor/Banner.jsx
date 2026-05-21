@@ -80,7 +80,7 @@ const slides = [
   },
 ];
 
-export default function Banner() {
+const Banner = () => {
   return (
     <div className="relative z-0 w-full h-175 md:h-162.5 lg:h-180 overflow-visible">
       <Swiper
@@ -102,10 +102,8 @@ export default function Banner() {
                 backgroundImage: `url(${slide.image})`,
               }}
             >
-              {/* Overlay */}
               <div className="absolute inset-0 z-0 bg-linear-to-r from-black/80 via-black/60 to-black/70"></div>
 
-              {/* LEFT CONTENT */}
               <div className="relative z-10 flex flex-col items-start justify-center h-full text-left px-6 md:px-12 lg:px-20 max-w-4xl">
                 <motion.div
                   initial={{ opacity: 0, y: -30 }}
@@ -139,40 +137,38 @@ export default function Banner() {
                   {slide.description}
                 </motion.p>
 
-                {/* BADGES */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
                   className="flex flex-wrap gap-4 mt-8"
                 >
-                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/20 text-white">
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 md:px-5 md:py-3 rounded-2xl py-2 border border-white/20 text-white md:text-lg text-xs">
                     🚀 Quick Registration
                   </div>
 
-                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/20 text-white">
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-2 md:px-5 md:py-3 rounded-2xl border border-white/20 text-white md:text-lg text-xs">
                     🛡️ Trusted Platform
                   </div>
                 </motion.div>
 
-                {/* BUTTONS */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                   className="flex flex-wrap gap-4 mt-10"
                 >
-                 <Link href="/add-tutors">
+                  <Link href="/add-tutors">
                     <button
-                    className={`bg-linear-to-r ${slide.primaryBtn} hover:scale-105 transition-all duration-300 text-white px-10 py-4 rounded-2xl text-lg font-semibold flex items-center gap-2 shadow-2xl`}
-                  >
-                    Apply Now →
-                  </button>
-                 </Link>
+                      className={`bg-linear-to-r ${slide.primaryBtn} hover:scale-105 transition-all duration-300 text-white px-5 py-3 md:px-10 md:py-4 rounded-xl text-md md:text-lg font-semibold flex items-center gap-2 shadow-2xl`}
+                    >
+                      Apply Now →
+                    </button>
+                  </Link>
 
                   <Link href="/tutors">
                     <button
-                      className={`border transition-all duration-300 px-8 py-4 rounded-2xl text-lg font-semibold ${slide.secondaryBtn}`}
+                      className={`border transition-all duration-300 px-5 py-2.5 md:px-10 md:py-4 rounded-xl text-md md:text-lg font-semibold ${slide.secondaryBtn}`}
                     >
                       Browse Tutors
                     </button>
@@ -180,9 +176,7 @@ export default function Banner() {
                 </motion.div>
               </div>
 
-              {/* RIGHT FLOATING CARDS */}
               <div className="absolute top-0 right-0 w-full h-full hidden lg:block pointer-events-none z-10">
-                {/* CARD 1 */}
                 <motion.div
                   initial={{ opacity: 0, x: 100 }}
                   animate={{
@@ -210,7 +204,6 @@ export default function Banner() {
                   </div>
                 </motion.div>
 
-                {/* CARD 2 */}
                 <motion.div
                   initial={{ opacity: 0, x: 100 }}
                   animate={{
@@ -244,4 +237,6 @@ export default function Banner() {
       </Swiper>
     </div>
   );
-}
+};
+
+export default Banner;

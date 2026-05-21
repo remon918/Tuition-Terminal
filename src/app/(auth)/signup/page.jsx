@@ -15,7 +15,7 @@ import { FcGoogle } from "react-icons/fc";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
-export default function SignupPage() {
+const SignupPage = () => {
   const handleGoogleSignUp = async () => {
     await authClient.signIn.social({
       provider: "google",
@@ -65,7 +65,6 @@ export default function SignupPage() {
     <div className="flex items-center justify-center px-3 py-6">
       <Card className="w-full max-w-lg rounded-md border border-gray-200 shadow-md">
         <div className="p-5 md:p-6">
-          {/* Header */}
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold text-[#243B63]">
               Create Account
@@ -76,12 +75,10 @@ export default function SignupPage() {
             </p>
           </div>
 
-          {/* Form */}
           <form
             onSubmit={handleSignUp}
             className="border-t border-gray-200 pt-5 space-y-4"
           >
-            {/* Name */}
             <div>
               <label className="flex items-center gap-2 text-sm font-semibold text-[#243B63] mb-1.5">
                 <User size={16} />
@@ -101,7 +98,6 @@ export default function SignupPage() {
               </div>
             </div>
 
-            {/* Image URL */}
             <div>
               <label className="flex items-center gap-2 text-sm font-semibold text-[#243B63] mb-1.5">
                 <ImageIcon size={16} />
@@ -121,7 +117,6 @@ export default function SignupPage() {
               </div>
             </div>
 
-            {/* Email */}
             <div>
               <label className="flex items-center gap-2 text-sm font-semibold text-[#243B63] mb-1.5">
                 <Mail size={16} />
@@ -142,7 +137,6 @@ export default function SignupPage() {
               </div>
             </div>
 
-            {/* Password */}
             <div>
               <label className="flex items-center gap-2 text-sm font-semibold text-[#243B63] mb-1.5">
                 <Lock size={16} />
@@ -172,7 +166,6 @@ export default function SignupPage() {
                 </button>
               </div>
 
-              {/* Password Rules */}
               <div className="mt-4 border-t border-gray-200 pt-3">
                 <h3 className="text-sm font-medium text-black mb-2">
                   Enter a password. Must contain:
@@ -197,7 +190,6 @@ export default function SignupPage() {
               </div>
             </div>
 
-            {/* Register Button */}
             <Button
               type="submit"
               className="w-full h-11 text-base font-semibold bg-linear-to-r from-teal-500 to-teal-400 hover:bg-linear-to-r hover:from-teal-400 hover:to-teal-500 text-white rounded-lg hover:scale-101 duration-300"
@@ -206,7 +198,6 @@ export default function SignupPage() {
               Register
             </Button>
 
-            {/* Google Button */}
             <Button
               onClick={handleGoogleSignUp}
               type="button"
@@ -218,7 +209,6 @@ export default function SignupPage() {
               Continue With Google
             </Button>
 
-            {/* Login */}
             <p className="text-sm text-gray-700 text-center pt-1">
               Already have an account?{" "}
               <span className="text-red-500 underline cursor-pointer">
@@ -230,4 +220,6 @@ export default function SignupPage() {
       </Card>
     </div>
   );
-}
+};
+
+export default SignupPage;

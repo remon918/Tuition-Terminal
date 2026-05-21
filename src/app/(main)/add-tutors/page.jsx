@@ -9,7 +9,7 @@ const subjects = ["Mathematics", "Physics", "Chemistry", "Biology", "English"];
 
 const teachingModes = ["Online", "Offline", "Both"];
 
-export default function AddTutorPage() {
+const AddTutorPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -23,8 +23,8 @@ export default function AddTutorPage() {
       year: "numeric",
     });
 
-    const {data:tokenData} = await authClient.token()
-        console.log(tokenData);
+    const { data: tokenData } = await authClient.token();
+    console.log(tokenData);
 
     const submitPromise = fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/addedtutors`,
@@ -32,10 +32,10 @@ export default function AddTutorPage() {
         method: "POST",
         headers: {
           "content-type": "application/json",
-           authorization :`Bearer ${tokenData?.token}`
+          authorization: `Bearer ${tokenData?.token}`,
         },
         body: JSON.stringify(tutorData),
-      }
+      },
     );
 
     toast.promise(submitPromise, {
@@ -50,12 +50,11 @@ export default function AddTutorPage() {
     console.log(data);
 
     e.target.reset();
-    redirect('/my-tutors')
+    redirect("/my-tutors");
   };
 
   return (
     <div className="min-h-screen px-4 py-6">
-      {/* Heading */}
       <div className="mx-auto mb-8 max-w-4xl text-center">
         <h1 className="text-4xl font-bold text-base-content">
           Become a Tutor 👨‍🏫
@@ -66,10 +65,8 @@ export default function AddTutorPage() {
         </p>
       </div>
 
-      {/* Form Card */}
       <div className="mx-auto max-w-4xl rounded-2xl border border-base-300 bg-base-100 p-8 shadow-sm">
         <form onSubmit={onSubmit} className="space-y-5">
-          {/* Tutor Name */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Tutor Name
@@ -83,7 +80,6 @@ export default function AddTutorPage() {
             />
           </div>
 
-          {/* Photo URL */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Photo URL
@@ -97,7 +93,6 @@ export default function AddTutorPage() {
             />
           </div>
 
-          {/* Subject */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Subject / Category
@@ -115,7 +110,6 @@ export default function AddTutorPage() {
             </select>
           </div>
 
-          {/* Available Time */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Available Days and Time
@@ -129,7 +123,6 @@ export default function AddTutorPage() {
             />
           </div>
 
-          {/* Hourly Fee */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Hourly Fee
@@ -143,7 +136,6 @@ export default function AddTutorPage() {
             />
           </div>
 
-          {/* Total Slot */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Total Slot
@@ -157,7 +149,6 @@ export default function AddTutorPage() {
             />
           </div>
 
-          {/* Session Date */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Session Start Date
@@ -170,7 +161,6 @@ export default function AddTutorPage() {
             />
           </div>
 
-          {/* Institution */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Institution
@@ -184,7 +174,6 @@ export default function AddTutorPage() {
             />
           </div>
 
-          {/* Experience */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Experience
@@ -197,7 +186,6 @@ export default function AddTutorPage() {
             />
           </div>
 
-          {/* Location */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Location (Area/City)
@@ -211,7 +199,6 @@ export default function AddTutorPage() {
             />
           </div>
 
-          {/* Teaching Mode */}
           <div>
             <label className="mb-2 block text-sm text-base-content">
               Teaching Mode
@@ -229,17 +216,18 @@ export default function AddTutorPage() {
             </select>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="cursor-pointer h-11 w-full border rounded-md bg-primary text-sm font-medium text-primary-content transition hover:opacity-90"
           >
             <div className="flex justify-center items-center gap-2">
-                Submit Application <FaExternalLinkSquareAlt />
+              Submit Application <FaExternalLinkSquareAlt />
             </div>
           </button>
         </form>
       </div>
     </div>
   );
-}
+};
+
+export default AddTutorPage;

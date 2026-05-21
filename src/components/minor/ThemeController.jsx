@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 
-export default function ThemeController() {
+const ThemeController = () => {
   const [theme, setTheme] = useState(null);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "normal";
-    
+
     setTimeout(() => {
       setTheme(savedTheme);
     }, 0);
@@ -38,3 +38,5 @@ export default function ThemeController() {
     </button>
   );
 }
+
+export default ThemeController;

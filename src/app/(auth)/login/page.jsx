@@ -8,8 +8,7 @@ import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
-export default function LoginPage() {
-
+const LoginPage = () => {
   const handleGoogleLogin = async () => {
     await authClient.signIn.social({
       provider: "google",
@@ -65,7 +64,6 @@ export default function LoginPage() {
     <div className="flex items-center justify-center px-3 py-6">
       <Card className="w-full max-w-lg rounded-md border border-gray-200 shadow-md">
         <div className="p-5 md:p-6">
-          {/* Header */}
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold text-[#243B63]">Welcome Back</h1>
 
@@ -74,12 +72,10 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Form */}
           <form
             onSubmit={handleLogin}
             className="border-t border-gray-200 pt-5 space-y-4"
           >
-            {/* Email */}
             <div>
               <label className="flex items-center gap-2 text-sm font-semibold text-[#243B63] mb-1.5">
                 <Mail size={16} />
@@ -100,7 +96,6 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Password */}
             <div>
               <label className="flex items-center gap-2 text-sm font-semibold text-[#243B63] mb-1.5">
                 <Lock size={16} />
@@ -130,7 +125,6 @@ export default function LoginPage() {
                 </button>
               </div>
 
-              {/* Forgot Password */}
               <p className="text-sm text-gray-600 mt-2">
                 <Link
                   href={"/forgot-password"}
@@ -140,7 +134,6 @@ export default function LoginPage() {
                 </Link>
               </p>
 
-              {/* Password Rules */}
               <div className="mt-4 border-t border-gray-200 pt-3">
                 <h3 className="text-sm font-medium text-black mb-2">
                   Password must contain:
@@ -165,7 +158,6 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Login Button */}
             <Button
               type="submit"
               className="w-full h-11 text-base font-semibold bg-linear-to-r from-teal-500 to-teal-400 hover:bg-linear-to-r hover:from-teal-400 hover:to-teal-500 text-white rounded-lg hover:scale-101 duration-300"
@@ -174,7 +166,6 @@ export default function LoginPage() {
               Login
             </Button>
 
-            {/* Google Button */}
             <Button
               onClick={handleGoogleLogin}
               type="button"
@@ -186,7 +177,6 @@ export default function LoginPage() {
               Continue With Google
             </Button>
 
-            {/* Signup */}
             <p className="text-sm text-gray-700 text-center pt-1">
               Don&apos;t have an account?{" "}
               <span className="text-red-500 underline cursor-pointer">
@@ -198,4 +188,6 @@ export default function LoginPage() {
       </Card>
     </div>
   );
-}
+};
+
+export default LoginPage;

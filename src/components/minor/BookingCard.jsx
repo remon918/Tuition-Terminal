@@ -22,7 +22,6 @@ const BookingCard = ({ tutor }) => {
 
       const bookingData = Object.fromEntries(formData.entries());
 
-      // extra data
       bookingData.tutorId = tutor?._id;
       bookingData.userId = user?.id;
       bookingData.userName = user?.name;
@@ -32,7 +31,6 @@ const BookingCard = ({ tutor }) => {
 
       const { data: tokenData } = await authClient.token();
 
-      // 1. BOOKING CREATE
       const bookingRes = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/booking`,
         {
@@ -47,12 +45,10 @@ const BookingCard = ({ tutor }) => {
 
       const bookingResult = await bookingRes.json();
 
-      // booking failed
       if (!bookingRes.ok) {
         throw new Error(bookingResult?.message || "Booking failed");
       }
 
-      // 2. SLOT DECREASE
       const slotRes = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/tutors/slot/${tutor?._id}`,
         {
@@ -65,7 +61,6 @@ const BookingCard = ({ tutor }) => {
 
       const slotResult = await slotRes.json();
 
-      // slot failed
       if (!slotRes.ok) {
         throw new Error(slotResult?.message || "Slot update failed");
       }
@@ -73,7 +68,6 @@ const BookingCard = ({ tutor }) => {
       toast.success("Session booked successfully!");
 
       setOpen(false);
-
 
       router.refresh();
     } catch (error) {
@@ -83,11 +77,8 @@ const BookingCard = ({ tutor }) => {
     }
   };
 
-  
-
   return (
     <>
-      {/* Button */}
       <button
         onClick={() => setOpen(true)}
         className="rounded-2xl cursor-pointer bg-teal-500 px-8 py-4 font-semibold text-white"
@@ -95,7 +86,6 @@ const BookingCard = ({ tutor }) => {
         Book Session
       </button>
 
-      {/* Modal */}
       {open && (
         <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/40 p-3 backdrop-blur-sm">
           <div className="relative w-full max-w-lg rounded-3xl border border-base-300 bg-base-100 shadow-2xl">
@@ -110,9 +100,7 @@ const BookingCard = ({ tutor }) => {
               <h1 className="text-2xl font-bold text-white">Book Session 📚</h1>
             </div>
 
-            {/* FORM */}
             <form onSubmit={handleBooking} className="mt-6 space-y-5 px-6 pb-6">
-              {/* Name */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-white">
                   Name
@@ -127,7 +115,6 @@ const BookingCard = ({ tutor }) => {
                 />
               </div>
 
-              {/* Phone */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-white">
                   Phone Number
@@ -142,7 +129,6 @@ const BookingCard = ({ tutor }) => {
                 />
               </div>
 
-              {/* Tutor Name */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-white">
                   Tutor Name
@@ -157,7 +143,6 @@ const BookingCard = ({ tutor }) => {
                 />
               </div>
 
-              {/* Email */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-white">
                   Email
@@ -172,7 +157,6 @@ const BookingCard = ({ tutor }) => {
                 />
               </div>
 
-              {/* Buttons */}
               <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end">
                 <button
                   type="button"

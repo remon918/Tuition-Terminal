@@ -11,10 +11,10 @@ const BookedSession = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  
-  const {token} = await auth.api.getToken({
-    headers: await headers()
-  })
+
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
 
   const user = session?.user;
 
@@ -25,7 +25,7 @@ const BookedSession = async () => {
       headers: {
         authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   const data = await res.json();
@@ -33,7 +33,6 @@ const BookedSession = async () => {
   return (
     <div className="min-h-screen px-4 py-10">
       <div className="mx-auto max-w-7xl">
-        {/* Heading */}
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-base-content">
             Booked Sessions 📚
@@ -44,7 +43,6 @@ const BookedSession = async () => {
           </p>
         </div>
 
-        {/* Table */}
         <div className="overflow-x-auto rounded-3xl border border-base-300 bg-base-100 p-5">
           <table className="min-w-250 w-full border-collapse">
             <thead>
@@ -77,44 +75,35 @@ const BookedSession = async () => {
 
             <tbody>
               {data?.map((booking) => (
-                <tr
-                  key={booking._id}
-                  className="border-b border-base-300"
-                >
-                  {/* Student */}
+                <tr key={booking._id} className="border-b border-base-300">
                   <td className="py-4 whitespace-nowrap text-base-content font-medium">
                     {booking?.userName}
                   </td>
 
-                  {/* Phone */}
                   <td className="py-4 whitespace-nowrap text-base-content">
                     {booking?.phone || "N/A"}
                   </td>
 
-                  {/* Tutor */}
                   <td className="py-4 whitespace-nowrap text-base-content">
                     {booking?.tutorName}
                   </td>
 
-                  {/* Email */}
                   <td className="py-4 whitespace-nowrap text-base-content">
                     {booking?.email}
                   </td>
 
-                  {/* Status */}
                   <td className="py-4 whitespace-nowrap">
                     <span
-  className={`rounded-full px-3 py-1 text-xs ${
-    booking?.status === "Cancelled"
-      ? "bg-red-100 text-red-700"
-      : "bg-emerald-100 text-emerald-700"
-  }`}
->
-  {booking?.status || "Confirmed"}
-</span>
+                      className={`rounded-full px-3 py-1 text-xs ${
+                        booking?.status === "Cancelled"
+                          ? "bg-red-100 text-red-700"
+                          : "bg-emerald-100 text-emerald-700"
+                      }`}
+                    >
+                      {booking?.status || "Confirmed"}
+                    </span>
                   </td>
 
-                  {/* Action */}
                   <td className="py-4 whitespace-nowrap">
                     <div className="flex justify-end">
                       <CancelButton id={booking._id} />
@@ -125,7 +114,6 @@ const BookedSession = async () => {
             </tbody>
           </table>
 
-          {/* Empty State */}
           {data?.length === 0 && (
             <div className="py-20 text-center">
               <h2 className="text-xl font-semibold text-base-content">

@@ -2,11 +2,10 @@
 
 import { motion } from "framer-motion";
 
-export default function WorkingGuide() {
+const WorkingGuide =() => {
   return (
     <section className="py-20 px-4">
-      <div className="mx-auto max-w-7xl">
-        {/* Heading */}
+      <div className="w-[92%] mx-auto lg:w-[85%] md:w-[90%]">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -29,7 +28,6 @@ export default function WorkingGuide() {
           </p>
         </motion.div>
 
-        {/* Cards */}
         <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-4">
           {[
             {
@@ -67,13 +65,10 @@ export default function WorkingGuide() {
               viewport={{ once: false }}
               className="group relative overflow-hidden rounded-[32px] border border-base-300 bg-base-100 p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary/30 hover:shadow-2xl"
             >
-              {/* Gradient Glow */}
               <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 transition duration-500 group-hover:opacity-100" />
 
-              {/* Floating Blur */}
               <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/10 blur-3xl transition-all duration-500 group-hover:scale-150" />
 
-              {/* Step Number */}
               <motion.div
                 whileHover={{ rotate: 8, scale: 1.08 }}
                 transition={{ duration: 0.2 }}
@@ -82,7 +77,6 @@ export default function WorkingGuide() {
                 {item.step}
               </motion.div>
 
-              {/* Text */}
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold leading-snug text-base-content">
                   {item.title}
@@ -93,7 +87,6 @@ export default function WorkingGuide() {
                 </p>
               </div>
 
-              {/* Bottom Animated Line */}
               <div className="absolute bottom-0 left-0 h-1 w-0 rounded-full bg-primary transition-all duration-500 group-hover:w-full" />
             </motion.div>
           ))}
@@ -102,3 +95,4 @@ export default function WorkingGuide() {
     </section>
   );
 }
+export default WorkingGuide;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {  FaArrowUp } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 
 const Scroll = () => {
   const [showButton, setShowButton] = useState(false);
@@ -17,8 +17,7 @@ const Scroll = () => {
 
     window.addEventListener("scroll", handleScroll);
 
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
