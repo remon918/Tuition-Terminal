@@ -143,7 +143,7 @@ const TutorDetailsPage = async ({ params }) => {
                   No Slot Available
                 </button>
               ) : (
-                <BookingCard />
+                <BookingCard tutor={tutor} />
               )}
             </div>
           </div>

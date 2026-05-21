@@ -61,7 +61,7 @@ export default function TutorCard({ tutor }) {
         {/* Button */}
 
         <Link className="cursor-pointer" href={`/tutors/${tutor?._id}`}>
-          <button className="mt-4 w-full rounded-lg bg-[#1edccf] py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#089187]">
+          <button className="mt-4 w-full cursor-pointer rounded-lg bg-[#1edccf] py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#089187]">
             Book Session
           </button>
         </Link>

@@ -65,7 +65,7 @@ const BookingCard = ({ tutor }) => {
       {/* Button */}
       <button
         onClick={() => setOpen(true)}
-        className="rounded-2xl bg-teal-500 px-8 py-4 font-semibold text-white"
+        className="rounded-2xl cursor-pointer bg-teal-500 px-8 py-4 font-semibold text-white"
       >
         Book Session
       </button>
@@ -113,6 +113,7 @@ const BookingCard = ({ tutor }) => {
                 <input
                   type="text"
                   name="phone"
+                  required
                   placeholder="017XX-XXXXXX"
                   className="h-12 w-full rounded-2xl border border-base-300 bg-base-200 px-4 text-base-content"
                 />
@@ -127,7 +128,7 @@ const BookingCard = ({ tutor }) => {
                 <input
                   type="text"
                   name="tutorName"
-                  value={tutor?.tutorName || tutor?.name || ""}
+                  value={tutor?.name}
                   readOnly
                   className="h-12 w-full rounded-2xl border border-base-300 bg-base-200 px-4 text-base-content"
                 />
