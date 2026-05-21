@@ -43,7 +43,7 @@ This project was built using **Next.js, MongoDB, Express.js, Better Auth, Tailwi
 
 ---
 
-## 📚 Smart Session Booking
+## 📚 Smart Session Booking System
 
 - Book tutoring sessions instantly
 - Auto decrease available slots after booking
@@ -60,16 +60,6 @@ This project was built using **Next.js, MongoDB, Express.js, Better Auth, Tailwi
 - JWT Protected Routes
 - Secure API verification using JOSE
 - Private route protection system
-
----
-
-## 🎨 Modern User Experience
-
-- Fully responsive design
-- Dark / Light theme support
-- Smooth animations with Framer Motion
-- Beautiful modals and toast notifications
-- Interactive UI components
 
 ---
 
@@ -142,13 +132,6 @@ This project was built using **Next.js, MongoDB, Express.js, Better Auth, Tailwi
 - MongoDB
 - JOSE JWT Verification
 
----
-
-## Authentication
-
-- Better Auth
-- Google Authentication
-- JWT Token System
 
 ---
 
@@ -204,12 +187,6 @@ npm install
 npm run dev
 ```
 
-Frontend will run on:
-
-```bash
-http://localhost:3000
-```
-
 ---
 
 ## 3️⃣ Backend Setup
@@ -220,136 +197,60 @@ npm install
 npm start
 ```
 
-Backend will run on:
-
-```bash
-http://localhost:8000
-```
-
 ---
-
-# 🔑 Environment Variables
-
-## Frontend `.env.local`
-
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
-NEXT_PUBLIC_BASE_URL=http://localhost:3000
-```
-
----
-
-## Backend `.env`
-
-```env
-PORT=8000
-
----
-
 # 🔗 API Endpoints
 
-## Tutors Routes
+## 📚 Tutors Routes
 
 | Method | Endpoint | Description |
 |--------|-----------|-------------|
 | GET | `/tutors` | Get all tutors |
 | GET | `/featured` | Get featured tutors |
-| GET | `/tutors/:id` | Get tutor details |
-| PATCH | `/tutors/slot/:id` | Decrease available slot |
+| GET | `/tutors/:id` | Get single tutor details |
+| PATCH | `/tutors/slot/:id` | Decrease tutor available slot |
 
 ---
 
-## Booking Routes
+## 📅 Booking Routes
 
 | Method | Endpoint | Description |
 |--------|-----------|-------------|
-| POST | `/booking` | Create booking |
-| GET | `/booking/:userId` | Get user bookings |
-| PATCH | `/booking/:id` | Cancel booking |
+| POST | `/booking` | Create new booking |
+| GET | `/booking/:userId` | Get user booked sessions |
+| PATCH | `/booking/:id` | Cancel booked session |
 
 ---
 
-## Added Tutors Routes
+## 👨‍🏫 Added Tutors Routes
 
 | Method | Endpoint | Description |
 |--------|-----------|-------------|
-| POST | `/addedtutors` | Add tutor |
-| PATCH | `/addedtutors/:id` | Update tutor |
+| POST | `/addedtutors` | Add new tutor |
+| GET | `/addedtutors` | Get added tutors |
+| PATCH | `/addedtutors/:id` | Update tutor information |
 | DELETE | `/addedtutors/:id` | Delete tutor |
 
----
-
-# 🔐 Authentication Flow
-
-- User logs in using Email/Password or Google
-- JWT token is generated
-- Token is stored client-side
-- Protected routes verify token
-- Secure tutor & booking operations
-- Private routes remain accessible after reload
-
----
-
-# 🎨 UI/UX Highlights
-
-- Clean modern dashboard layout
-- Smooth page transitions
-- Professional modal system
-- Reusable component architecture
-- Consistent typography and spacing
-- Mobile-first responsive design
-- Modern glassmorphism inspired sections
 
 ---
 
 # 🚀 Future Improvements
 
-- Online video class integration
-- Tutor rating & review system
-- Payment gateway integration
-- Real-time notifications
-- Tutor availability calendar
-- Admin dashboard
-- Session reminders via email
-- Chat system between tutor & student
+- Tutor Rating System
+- Online Video Classes
+- Real-time Notifications
+- Payment Integration
+- Tutor Availability Calendar
+- Admin Dashboard
 
 ---
 
 # 🤝 Contributing
 
-Contributors are welcome!
-
-## Steps to contribute:
-
-### 1️⃣ Fork the repository
-
----
-
-### 2️⃣ Create a new branch
-
-```bash
-git checkout -b feature-name
-```
-
----
-
-### 3️⃣ Commit your changes
-
-```bash
-git commit -m "Added new feature"
-```
-
----
-
-### 4️⃣ Push the branch
-
-```bash
-git push origin feature-name
-```
-
----
-
-### 5️⃣ Open a Pull Request
+1. Fork the repository  
+2. Create a feature branch  
+3. Commit your changes  
+4. Push to GitHub  
+5. Create a Pull Request  
 
 ---
 
@@ -371,8 +272,6 @@ This project is licensed under the **MIT License**.
 # 💬 Support
 
 If you like this project, consider giving it a ⭐ on GitHub.
-
-For any support or suggestions:
 
 📧 mdremonhossen7778@gmail.com
 
