@@ -6,7 +6,6 @@ export default function WorkingGuide() {
   return (
     <section className="py-20 px-4">
       <div className="mx-auto max-w-7xl">
-
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -32,7 +31,6 @@ export default function WorkingGuide() {
 
         {/* Cards */}
         <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-4">
-
           {[
             {
               step: "01",
@@ -69,7 +67,6 @@ export default function WorkingGuide() {
               viewport={{ once: false }}
               className="group relative overflow-hidden rounded-[32px] border border-base-300 bg-base-100 p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary/30 hover:shadow-2xl"
             >
-
               {/* Gradient Glow */}
               <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 transition duration-500 group-hover:opacity-100" />
 
