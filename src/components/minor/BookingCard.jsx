@@ -82,7 +82,7 @@ const BookingCard = ({ tutor }) => {
             </button>
 
             <div className="px-6 pt-8 text-center">
-              <h1 className="text-2xl font-bold text-base-content">
+              <h1 className="text-2xl font-bold text-white">
                 Book Session 📚
               </h1>
             </div>
@@ -91,7 +91,7 @@ const BookingCard = ({ tutor }) => {
             <form onSubmit={handleBooking} className="mt-6 space-y-5 px-6 pb-6">
               {/* Name */}
               <div>
-                <label className="mb-2 block text-sm font-medium text-base-content">
+                <label className="mb-2 block text-sm font-medium text-white">
                   Name
                 </label>
 
@@ -100,13 +100,13 @@ const BookingCard = ({ tutor }) => {
                   name="userName"
                   value={user?.name || ""}
                   readOnly
-                  className="h-12 w-full rounded-2xl border border-base-300 bg-base-200 px-4 text-base-content"
+                  className="h-12 w-full rounded-2xl border border-base-300 bg-base-100 px-4 text-white"
                 />
               </div>
 
               {/* Phone */}
               <div>
-                <label className="mb-2 block text-sm font-medium text-base-content">
+                <label className="mb-2 block text-sm font-medium text-white">
                   Phone Number
                 </label>
 
@@ -115,13 +115,13 @@ const BookingCard = ({ tutor }) => {
                   name="phone"
                   required
                   placeholder="017XX-XXXXXX"
-                  className="h-12 w-full rounded-2xl border border-base-300 bg-base-200 px-4 text-base-content"
+                  className="h-12 w-full rounded-2xl border border-base-300 bg-base-200 px-4 text-white"
                 />
               </div>
 
               {/* Tutor Name */}
               <div>
-                <label className="mb-2 block text-sm font-medium text-base-content">
+                <label className="mb-2 block text-sm font-medium text-white">
                   Tutor Name
                 </label>
 
@@ -130,13 +130,13 @@ const BookingCard = ({ tutor }) => {
                   name="tutorName"
                   value={tutor?.name}
                   readOnly
-                  className="h-12 w-full rounded-2xl border border-base-300 bg-base-200 px-4 text-base-content"
+                  className="h-12 w-full rounded-2xl border border-base-300 bg-base-200 px-4 text-white"
                 />
               </div>
 
               {/* Email */}
               <div>
-                <label className="mb-2 block text-sm font-medium text-base-content">
+                <label className="mb-2 block text-sm font-medium text-white">
                   Email
                 </label>
 
@@ -145,7 +145,7 @@ const BookingCard = ({ tutor }) => {
                   name="email"
                   value={user?.email || ""}
                   readOnly
-                  className="h-12 w-full rounded-2xl border border-base-300 bg-base-200 px-4 text-base-content"
+                  className="h-12 w-full rounded-2xl border border-base-300 bg-base-200 px-4 text-white"
                 />
               </div>
 
@@ -154,7 +154,7 @@ const BookingCard = ({ tutor }) => {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="rounded-2xl cursor-pointer border border-base-300 bg-base-200 px-5 py-2.5 text-base-content"
+                  className="rounded-2xl cursor-pointer border border-base-300 bg-base-200 px-5 py-2.5 text-white"
                 >
                   Cancel
                 </button>

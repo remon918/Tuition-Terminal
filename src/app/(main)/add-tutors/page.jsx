@@ -79,7 +79,7 @@ export default function AddTutorPage() {
               name="tutorName"
               type="text"
               placeholder="Rahim Ahmed"
-              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-base-content outline-none transition focus:border-primary"
+              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-blue-500 outline-none transition focus:border-primary"
             />
           </div>
 
@@ -93,7 +93,7 @@ export default function AddTutorPage() {
               type="text"
               name="image"
               placeholder="imgbb / postimage link"
-              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-base-content outline-none transition focus:border-primary"
+              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-blue-500 outline-none transition focus:border-primary"
             />
           </div>
 
@@ -125,7 +125,7 @@ export default function AddTutorPage() {
               type="text"
               name="availableTime"
               placeholder="Sun - Thu 5:00 PM - 8:00 PM"
-              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-base-content outline-none transition focus:border-primary"
+              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-blue-500 outline-none transition focus:border-primary"
             />
           </div>
 
@@ -139,7 +139,7 @@ export default function AddTutorPage() {
               type="number"
               name="hourlyRate"
               placeholder="500"
-              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-base-content outline-none transition focus:border-primary"
+              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-blue-500 outline-none transition focus:border-primary"
             />
           </div>
 
@@ -153,7 +153,7 @@ export default function AddTutorPage() {
               type="number"
               name="availableSlots"
               placeholder="10"
-              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-base-content outline-none transition focus:border-primary"
+              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-blue-500 outline-none transition focus:border-primary"
             />
           </div>
 
@@ -180,7 +180,7 @@ export default function AddTutorPage() {
               type="text"
               name="institution"
               placeholder="Dhaka University"
-              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-base-content outline-none transition focus:border-primary"
+              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-blue-500 outline-none transition focus:border-primary"
             />
           </div>
 
@@ -193,7 +193,7 @@ export default function AddTutorPage() {
             <textarea
               name="experience"
               placeholder="3 years teaching experience..."
-              className="min-h-15 w-full rounded-md border border-base-300 bg-base-100 px-3 py-3 text-sm text-base-content outline-none transition focus:border-primary"
+              className="min-h-15 w-full rounded-md border border-base-300 bg-base-100 px-3 py-3 text-sm text-blue-500 outline-none transition focus:border-primary"
             />
           </div>
 
@@ -207,7 +207,7 @@ export default function AddTutorPage() {
               type="text"
               name="location"
               placeholder="Khulna"
-              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-base-content outline-none transition focus:border-primary"
+              className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-blue-500 outline-none transition focus:border-primary"
             />
           </div>
 
