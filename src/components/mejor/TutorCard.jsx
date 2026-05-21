@@ -31,13 +31,14 @@ export default function TutorCard({ tutor }) {
 
         {/* Details */}
         <div className="mt-3 space-y-1.5 text-sm text-black">
-          <p>
-            <span className="font-semibold">Location:</span> {tutor?.location}
-          </p>
 
           <p>
             <span className="font-semibold">Available:</span>{" "}
             {tutor?.availableTime}
+          </p>
+          <p>
+            <span className="font-semibold">Season Start Date:</span>{" "}
+            {tutor?.seasonStartDate}
           </p>
 
           <p>

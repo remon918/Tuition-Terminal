@@ -6,52 +6,64 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 
-const Edit = ({tutor}) => {
-    // console.log(tutor)
+const Edit = ({ tutor }) => {
+  // console.log(tutor)
 
-    const router = useRouter();
+  const router = useRouter();
 
-    const {_id,tutorName,image,subject,availableTime,hourlyRate,availableSlots,sessionStartDate,institution,experience,location,teachingMode,registrationDate } = tutor;
-    const onSubmit =async(e)=>{
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget)
-        const tutor = Object.fromEntries(formData.entries())
-        console.log(tutor);
+  const {
+    _id,
+    tutorName,
+    image,
+    subject,
+    availableTime,
+    hourlyRate,
+    availableSlots,
+    sessionStartDate,
+    institution,
+    experience,
+    location,
+    teachingMode,
+    registrationDate,
+  } = tutor;
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const tutor = Object.fromEntries(formData.entries());
+    console.log(tutor);
 
-        const {data:tokenData} = await authClient.token()
-              console.log(tokenData);
+    const { data: tokenData } = await authClient.token();
+    console.log(tokenData);
 
-        const submitPromise = fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/addedtutors/${_id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "content-type": "application/json",
-              authorization :`Bearer ${tokenData?.token}`
-            },
-            body: JSON.stringify(tutor),
-          }
-        );
-    
-        toast.promise(submitPromise, {
-          loading: "changes saving...",
-          success: "saved changes",
-          error: "changes not saved",
-        });
-    
-        const res = await submitPromise;
-        const data = await res.json();
-    
-        console.log(data);
-    
-        setOpen(false);
+    const submitPromise = fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/addedtutors/${_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
+        body: JSON.stringify(tutor),
+      },
+    );
+
+    toast.promise(submitPromise, {
+      loading: "changes saving...",
+      success: "saved changes",
+      error: "changes not saved",
+    });
+
+    const res = await submitPromise;
+    const data = await res.json();
+
+    console.log(data);
+
+    setOpen(false);
 
     // instant ui update
     router.refresh();
+  };
 
-    }
-
-    
   const [open, setOpen] = useState(false);
 
   return (
@@ -67,9 +79,7 @@ const Edit = ({tutor}) => {
       {/* Modal */}
       {open && (
         <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/40 p-3 backdrop-blur-sm">
-          
           <div className="relative max-h-[95vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-base-300 bg-base-100 p-4 shadow-2xl sm:p-5 md:p-6">
-            
             {/* Close Button */}
             <button
               onClick={() => setOpen(false)}
@@ -90,8 +100,10 @@ const Edit = ({tutor}) => {
             </div>
 
             {/* Form */}
-            <form onSubmit={onSubmit} className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              
+            <form
+              onSubmit={onSubmit}
+              className="grid grid-cols-1 gap-4 md:grid-cols-2"
+            >
               {/* Tutor Name */}
               <div>
                 <label className="mb-1.5 block text-sm text-base-content">
@@ -99,7 +111,7 @@ const Edit = ({tutor}) => {
                 </label>
 
                 <input
-                name ="tutorName"
+                  name="tutorName"
                   type="text"
                   defaultValue={tutorName}
                   className="h-11 w-full rounded-xl border border-base-300 bg-base-200 px-4 text-sm text-base-content outline-none transition focus:border-primary"
@@ -112,7 +124,11 @@ const Edit = ({tutor}) => {
                   Subject
                 </label>
 
-                <select name="subject" defaultValue={subject} className="h-11 w-full rounded-xl border border-base-300 bg-base-200 px-4 text-sm text-base-content outline-none transition focus:border-primary">
+                <select
+                  name="subject"
+                  defaultValue={subject}
+                  className="h-11 w-full rounded-xl border border-base-300 bg-base-200 px-4 text-sm text-base-content outline-none transition focus:border-primary"
+                >
                   <option>Mathematics</option>
                   <option>Physics</option>
                   <option>Chemistry</option>
@@ -141,7 +157,7 @@ const Edit = ({tutor}) => {
 
                 <input
                   type="number"
-                  name ="hourlyRate"
+                  name="hourlyRate"
                   defaultValue={hourlyRate}
                   className="h-11 w-full rounded-xl border border-base-300 bg-base-200 px-4 text-sm text-base-content outline-none transition focus:border-primary"
                 />
@@ -167,7 +183,11 @@ const Edit = ({tutor}) => {
                   Teaching Mode
                 </label>
 
-                <select defaultValue={teachingMode} name="teachingMode" className="h-11 w-full rounded-xl border border-base-300 bg-base-200 px-4 text-sm text-base-content outline-none transition focus:border-primary">
+                <select
+                  defaultValue={teachingMode}
+                  name="teachingMode"
+                  className="h-11 w-full rounded-xl border border-base-300 bg-base-200 px-4 text-sm text-base-content outline-none transition focus:border-primary"
+                >
                   <option>Online</option>
                   <option>Offline</option>
                   <option>Both</option>
@@ -181,7 +201,7 @@ const Edit = ({tutor}) => {
                 </label>
 
                 <textarea
-                name ="experience"
+                  name="experience"
                   defaultValue={experience}
                   className="min-h-24 w-full rounded-xl border border-base-300 bg-base-200 px-4 py-3 text-sm text-base-content outline-none transition focus:border-primary"
                 />
@@ -189,7 +209,6 @@ const Edit = ({tutor}) => {
 
               {/* Buttons */}
               <div className="mt-2 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end md:col-span-2">
-                
                 <button
                   type="button"
                   onClick={() => setOpen(false)}

@@ -11,20 +11,19 @@ const Delete = ({ id }) => {
 
   const router = useRouter();
 
-  
-
   const handleDelete = async () => {
-    const {data:tokenData} = await authClient.token()
-      console.log(tokenData);
+    const { data: tokenData } = await authClient.token();
+    console.log(tokenData);
 
     const deletePromise = fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/addedtutors/${id}`,
       {
         method: "DELETE",
-      headers: {
-          authorization :`Bearer ${tokenData?.token}`
+        headers: {
+          authorization: `Bearer ${tokenData?.token}`,
         },
-    });
+      },
+    );
 
     toast.promise(deletePromise, {
       loading: "Deleting tutor...",
@@ -52,9 +51,7 @@ const Delete = ({ id }) => {
       {/* Modal */}
       {open && (
         <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
-          
           <div className="w-full max-w-sm rounded-2xl border border-base-300 bg-base-100 p-6 shadow-2xl">
-            
             {/* Top */}
             <div className="flex items-start justify-between">
               <div>
@@ -77,7 +74,6 @@ const Delete = ({ id }) => {
 
             {/* Buttons */}
             <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-              
               <button
                 onClick={() => setOpen(false)}
                 className="w-full rounded-xl border border-base-300 bg-base-200 px-4 py-2.5 text-sm text-base-content cursor-pointer transition hover:bg-base-300 sm:w-auto"

@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Link from "next/link";
 
 const slides = [
   {
@@ -22,8 +23,7 @@ const slides = [
 
     primaryBtn: "from-blue-500 to-purple-600",
 
-    secondaryBtn:
-      "border-white/50 hover:bg-white/10 text-white",
+    secondaryBtn: "border-white/50 hover:bg-white/10 text-white",
 
     stats1Bg: "from-blue-500/30 to-cyan-400/20",
 
@@ -70,8 +70,7 @@ const slides = [
 
     primaryBtn: "from-orange-500 to-red-500",
 
-    secondaryBtn:
-      "border-orange-300/50 hover:bg-orange-500/10 text-orange-100",
+    secondaryBtn: "border-orange-300/50 hover:bg-orange-500/10 text-orange-100",
 
     stats1Bg: "from-orange-500/30 to-yellow-400/20",
 
@@ -163,17 +162,21 @@ export default function Banner() {
                   transition={{ delay: 0.5 }}
                   className="flex flex-wrap gap-4 mt-10"
                 >
-                  <button
+                 <Link href="/add-tutors">
+                    <button
                     className={`bg-linear-to-r ${slide.primaryBtn} hover:scale-105 transition-all duration-300 text-white px-10 py-4 rounded-2xl text-lg font-semibold flex items-center gap-2 shadow-2xl`}
                   >
                     Apply Now →
                   </button>
+                 </Link>
 
-                  <button
-                    className={`border transition-all duration-300 px-8 py-4 rounded-2xl text-lg font-semibold ${slide.secondaryBtn}`}
-                  >
-                    Browse Tutors
-                  </button>
+                  <Link href="/tutors">
+                    <button
+                      className={`border transition-all duration-300 px-8 py-4 rounded-2xl text-lg font-semibold ${slide.secondaryBtn}`}
+                    >
+                      Browse Tutors
+                    </button>
+                  </Link>
                 </motion.div>
               </div>
 
@@ -200,9 +203,7 @@ export default function Banner() {
                   backdrop-blur-xl border border-white/20
                   rounded-3xl p-6 text-center shadow-2xl`}
                 >
-                  <div className="text-4xl font-bold text-white">
-                    150K+
-                  </div>
+                  <div className="text-4xl font-bold text-white">150K+</div>
 
                   <div className="text-sm tracking-widest text-gray-200 mt-1">
                     ACTIVE TUTORS
@@ -230,9 +231,7 @@ export default function Banner() {
                   backdrop-blur-xl border border-white/20
                   rounded-3xl p-6 text-center shadow-2xl`}
                 >
-                  <div className="text-4xl font-bold text-white">
-                    50K+
-                  </div>
+                  <div className="text-4xl font-bold text-white">50K+</div>
 
                   <div className="text-sm tracking-widest text-gray-200 mt-1">
                     STUDENTS HELPED
