@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 const BookingCard = ({ tutor }) => {
-  
   const [open, setOpen] = useState(false);
 
   const { data: session } = useSession();
@@ -26,26 +25,22 @@ const BookingCard = ({ tutor }) => {
     bookingData.userId = user?.id;
     bookingData.userName = user?.name;
     bookingData.email = user?.email;
-    bookingData.tutorName =
-  tutor?.tutorName || tutor?.name;
-  bookingData.status = "Confirmed";
+    bookingData.tutorName = tutor?.tutorName || tutor?.name;
+    bookingData.status = "Confirmed";
 
     // console.log(bookingData);
 
-    const {data:tokenData} = await authClient.token()
+    const { data: tokenData } = await authClient.token();
     console.log(tokenData);
 
-    const submitPromise = fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/booking`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization :`Bearer ${tokenData?.token}`
-        },
-        body: JSON.stringify(bookingData),
-      }
-    );
+    const submitPromise = fetch(`${process.env.NEXT_PUBLIC_API_URL}/booking`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
+      },
+      body: JSON.stringify(bookingData),
+    });
 
     toast.promise(submitPromise, {
       loading: "Booking session...",
@@ -78,9 +73,7 @@ const BookingCard = ({ tutor }) => {
       {/* Modal */}
       {open && (
         <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/40 p-3 backdrop-blur-sm">
-
           <div className="relative w-full max-w-lg rounded-3xl border border-base-300 bg-base-100 shadow-2xl">
-
             <button
               onClick={() => setOpen(false)}
               className="absolute right-4 top-4 rounded-full p-2"
@@ -95,11 +88,7 @@ const BookingCard = ({ tutor }) => {
             </div>
 
             {/* FORM */}
-            <form
-              onSubmit={handleBooking}
-              className="mt-6 space-y-5 px-6 pb-6"
-            >
-
+            <form onSubmit={handleBooking} className="mt-6 space-y-5 px-6 pb-6">
               {/* Name */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-base-content">
@@ -161,7 +150,6 @@ const BookingCard = ({ tutor }) => {
 
               {/* Buttons */}
               <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end">
-
                 <button
                   type="button"
                   onClick={() => setOpen(false)}

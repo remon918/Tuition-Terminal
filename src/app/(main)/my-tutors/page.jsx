@@ -7,21 +7,16 @@ export const metadata = {
   title: "My Tutors",
 };
 
-
-
 const MyTutorsPage = async () => {
-  const {token} = await auth.api.getToken({
-    headers: await headers()
-  })
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/addedtutors`,
-    {
-      cache: "no-store",
-      headers: {
-              authorization: `Bearer ${token}`,
-            },
-    }
-  );
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/addedtutors`, {
+    cache: "no-store",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
 
   const addtutors = await res.json();
 
@@ -29,9 +24,7 @@ const MyTutorsPage = async () => {
     <div className="min-h-screen px-4 py-8">
       {/* Heading */}
       <div className="mx-auto mb-8 max-w-7xl text-center">
-        <h1 className="text-4xl font-bold text-base-content">
-          My Tutors 👨‍🏫
-        </h1>
+        <h1 className="text-4xl font-bold text-base-content">My Tutors 👨‍🏫</h1>
 
         <p className="mt-2 text-sm text-base-content/70">
           Manage all your tutor applications easily.
@@ -75,10 +68,7 @@ const MyTutorsPage = async () => {
 
           <tbody>
             {addtutors.map((tutor) => (
-              <tr
-                key={tutor._id}
-                className="border-b border-base-300"
-              >
+              <tr key={tutor._id} className="border-b border-base-300">
                 <td className="py-4 whitespace-nowrap text-base-content">
                   {tutor.tutorName}
                 </td>
@@ -107,7 +97,7 @@ const MyTutorsPage = async () => {
 
                 <td className="py-4 whitespace-nowrap">
                   <div className="flex justify-end gap-4">
-                    <Delete id={tutor?._id}/>
+                    <Delete id={tutor?._id} />
 
                     <Edit tutor={tutor} />
                   </div>
