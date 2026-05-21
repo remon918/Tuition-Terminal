@@ -5,39 +5,33 @@ import { HiMiniCurrencyDollar } from "react-icons/hi2";
 import BookingCard from "@/components/minor/BookingCard";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import Link from "next/link";
 
 export const metadata = {
   title: "Tutor Details",
-}
+};
 
 const fetchTutorDetails = async (id, token) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/tutors/${id}`,
-    {
-      cache: "no-store",
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tutors/${id}`, {
+    cache: "no-store",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
 
   const data = await res.json();
 
   return data || {};
 };
 
-
-
 const TutorDetailsPage = async ({ params }) => {
-
   const { id } = await params;
 
-  const {token} = await auth.api.getToken({
-    headers: await headers()
-  })
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
 
   const tutor = await fetchTutorDetails(id, token);
-
 
   return (
     <div className="min-h-screen px-4 py-10">
@@ -130,7 +124,7 @@ const TutorDetailsPage = async ({ params }) => {
             </div>
 
             {/* bottom section */}
-            <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-10 flex gap-5  items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Remaining Slots:</p>
 
@@ -144,8 +138,13 @@ const TutorDetailsPage = async ({ params }) => {
                   {tutor?.availableSlots} Slots Left
                 </h3>
               </div>
-
-              <BookingCard tutor={tutor} />
+              {tutor?.availableSlots === 0 ? (
+                <button className="mt-4 w-[40%]  rounded-lg  py-2.5 text-sm font-semibold transition-all duration-300 text-gray-300 border italic">
+                  No Slot Available
+                </button>
+              ) : (
+                <BookingCard />
+              )}
             </div>
           </div>
         </div>
