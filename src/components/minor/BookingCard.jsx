@@ -17,47 +17,70 @@ const BookingCard = ({ tutor }) => {
   const handleBooking = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
+    try {
+      const formData = new FormData(e.target);
 
-    const bookingData = Object.fromEntries(formData.entries());
+      const bookingData = Object.fromEntries(formData.entries());
 
-    // extra data
-    bookingData.userId = user?.id;
-    bookingData.userName = user?.name;
-    bookingData.email = user?.email;
-    bookingData.tutorName = tutor?.tutorName || tutor?.name;
-    bookingData.status = "Confirmed";
+      // extra data
+      bookingData.tutorId = tutor?._id;
+      bookingData.userId = user?.id;
+      bookingData.userName = user?.name;
+      bookingData.email = user?.email;
+      bookingData.tutorName = tutor?.name;
+      bookingData.status = "Confirmed";
 
-    // console.log(bookingData);
+      const { data: tokenData } = await authClient.token();
 
-    const { data: tokenData } = await authClient.token();
-    console.log(tokenData);
+      // 1. BOOKING CREATE
+      const bookingRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/booking`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+          body: JSON.stringify(bookingData),
+        },
+      );
 
-    const submitPromise = fetch(`${process.env.NEXT_PUBLIC_API_URL}/booking`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${tokenData?.token}`,
-      },
-      body: JSON.stringify(bookingData),
-    });
+      const bookingResult = await bookingRes.json();
 
-    toast.promise(submitPromise, {
-      loading: "Booking session...",
-      success: "Session booked successfully!",
-      error: "Booking failed",
-    });
+      // booking failed
+      if (!bookingRes.ok) {
+        throw new Error(bookingResult?.message || "Booking failed");
+      }
 
-    const res = await submitPromise;
-    const data = await res.json();
+      // 2. SLOT DECREASE
+      const slotRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/tutors/slot/${tutor?._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+        },
+      );
 
-    console.log(data);
+      const slotResult = await slotRes.json();
 
-    setOpen(false);
+      // slot failed
+      if (!slotRes.ok) {
+        throw new Error(slotResult?.message || "Slot update failed");
+      }
 
-    router.push("/my-booked-session");
+      toast.success("Session booked successfully!");
 
-    router.refresh();
+      setOpen(false);
+
+
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+
+      toast.error(error.message || "Booking failed");
+    }
   };
 
   return (
@@ -82,9 +105,7 @@ const BookingCard = ({ tutor }) => {
             </button>
 
             <div className="px-6 pt-8 text-center">
-              <h1 className="text-2xl font-bold text-white">
-                Book Session 📚
-              </h1>
+              <h1 className="text-2xl font-bold text-white">Book Session 📚</h1>
             </div>
 
             {/* FORM */}
