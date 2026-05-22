@@ -37,7 +37,6 @@ const Navbar = () => {
   const loggedOutMenus = [
     { name: "Home", href: "/", icon: "🏠" },
     { name: "Tutors", href: "/tutors", icon: "👨‍🏫" },
-    { name: "Profile", href: "/profile", icon: "👤" },
     { name: "Services", href: "/services", icon: "✨" },
     { name: "About", href: "/about", icon: "ℹ️" },
 
