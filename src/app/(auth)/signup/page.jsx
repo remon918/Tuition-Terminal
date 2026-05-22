@@ -63,10 +63,10 @@ const SignupPage = () => {
 
   return (
     <div className="flex items-center justify-center px-3 py-6">
-      <Card className="w-full max-w-lg rounded-md border border-gray-200 shadow-md">
+      <div className="w-full max-w-lg rounded-md border border-gray-200 shadow-md">
         <div className="p-5 md:p-6">
           <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold text-[#243B63]">
+            <h1 className="text-3xl font-bold">
               Create Account
             </h1>
 
@@ -80,7 +80,7 @@ const SignupPage = () => {
             className="border-t border-gray-200 pt-5 space-y-4"
           >
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-[#243B63] mb-1.5">
+              <label className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                 <User size={16} />
                 Name
               </label>
@@ -99,7 +99,7 @@ const SignupPage = () => {
             </div>
 
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-[#243B63] mb-1.5">
+              <label className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                 <ImageIcon size={16} />
                 Image URL
               </label>
@@ -118,7 +118,7 @@ const SignupPage = () => {
             </div>
 
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-[#243B63] mb-1.5">
+              <label className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                 <Mail size={16} />
                 Email
               </label>
@@ -138,7 +138,7 @@ const SignupPage = () => {
             </div>
 
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-[#243B63] mb-1.5">
+              <label className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                 <Lock size={16} />
                 Password
               </label>
@@ -167,7 +167,7 @@ const SignupPage = () => {
               </div>
 
               <div className="mt-4 border-t border-gray-200 pt-3">
-                <h3 className="text-sm font-medium text-black mb-2">
+                <h3 className="text-sm font-medium  mb-2">
                   Enter a password. Must contain:
                 </h3>
 
@@ -176,7 +176,7 @@ const SignupPage = () => {
                     <div
                       key={index}
                       className={`flex items-center gap-2 text-sm ${
-                        rule.valid ? "text-green-600" : "text-gray-600"
+                        rule.valid ? "text-green-600" : ""
                       }`}
                     >
                       <span className="text-lg leading-none">
@@ -203,13 +203,13 @@ const SignupPage = () => {
               type="button"
               variant="bordered"
               radius="sm"
-              className="w-full h-11 text-gray-800 font-medium border-2 border-gray-300 rounded-lg hover:scale-101 duration-300 hover:bg-gray-200"
+              className="w-full h-11 font-medium border-2 border-gray-300 rounded-lg hover:scale-101 duration-300"
             >
               <FcGoogle />
               Continue With Google
             </Button>
 
-            <p className="text-sm text-gray-700 text-center pt-1">
+            <p className="text-sm text-center pt-1">
               Already have an account?{" "}
               <span className="text-red-500 underline cursor-pointer">
                 <Link href={"/login"}>Login</Link>
@@ -217,7 +217,7 @@ const SignupPage = () => {
             </p>
           </form>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };

@@ -43,7 +43,7 @@ const TutorDetailsPage = async ({ params }) => {
   return (
     <div className="min-h-screen px-4 py-10">
       <div className="mx-auto max-w-6xl overflow-hidden rounded-[32px] border border-gray-200 shadow-xl">
-        <div className="grid bg-white grid-cols-1 lg:grid-cols-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="relative flex items-center justify-center p-5 lg:p-8">
             <div className="relative h-65 w-full overflow-hidden rounded-[28px] sm:h-80 lg:h-130">
               <Image
@@ -63,7 +63,7 @@ const TutorDetailsPage = async ({ params }) => {
 
               <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 shadow-md backdrop-blur">
                 <FaStar className="text-yellow-500" />
-                <span className="font-semibold text-gray-800">
+                <span className="font-semibold ">
                   {tutor?.rating}
                 </span>
               </div>
@@ -81,7 +81,7 @@ const TutorDetailsPage = async ({ params }) => {
                 🎓 Best Tutor
               </p>
 
-              <h1 className="text-4xl font-bold text-gray-900">
+              <h1 className="text-4xl font-bold">
                 {tutor?.name || "Tutor"}
               </h1>
 
@@ -92,8 +92,8 @@ const TutorDetailsPage = async ({ params }) => {
               <div className="flex items-start gap-3">
                 <MdSchool className="mt-1 text-xl text-purple-600" />
                 <div>
-                  <p className="font-semibold text-gray-800">Institution</p>
-                  <p className="text-gray-600">
+                  <p className="font-semibold ">Institution</p>
+                  <p className="text-gray-500">
                     {tutor?.institution || "Not Provided"}
                   </p>
                 </div>
@@ -102,7 +102,7 @@ const TutorDetailsPage = async ({ params }) => {
               <div className="flex items-start gap-3">
                 <MdOutlineModeEdit className="mt-1 text-xl text-purple-600" />
                 <div>
-                  <p className="font-semibold text-gray-800">Experience</p>
+                  <p className="font-semibold ">Experience</p>
                   <p className="text-gray-600">
                     {tutor?.experience || "Not Provided"}
                   </p>
@@ -112,7 +112,7 @@ const TutorDetailsPage = async ({ params }) => {
               <div className="flex items-start gap-3">
                 <FaMapMarkerAlt className="mt-1 text-lg text-purple-600" />
                 <div>
-                  <p className="font-semibold text-gray-800">Location</p>
+                  <p className="font-semibold ">Location</p>
                   <p className="text-gray-600">
                     {tutor?.location || "Not Provided"}
                   </p>
@@ -122,7 +122,7 @@ const TutorDetailsPage = async ({ params }) => {
               <div className="flex items-start gap-3">
                 <MdAccessTime className="mt-1 text-xl text-purple-600" />
                 <div>
-                  <p className="font-semibold text-gray-800">Available Time</p>
+                  <p className="font-semibold ">Available Time</p>
                   <p className="text-gray-600">
                     {tutor?.availableTime || "Not Provided"}
                   </p>
@@ -132,7 +132,7 @@ const TutorDetailsPage = async ({ params }) => {
               <div className="flex items-start gap-3">
                 <HiMiniCurrencyDollar className="mt-1 text-xl text-purple-600" />
                 <div>
-                  <p className="font-semibold text-gray-800">Hourly Fee</p>
+                  <p className="font-semibold ">Hourly Fee</p>
                   <p className="text-gray-600">৳ ৳ {tutor?.hourlyRate || 0}/hr</p>
                 </div>
               </div>

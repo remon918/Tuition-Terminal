@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const TutorCard = ({ tutor }) => {
   return (
-    <div className="w-full rounded-2xl border border-gray-200 bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <div className="w-full rounded-2xl border border-gray-200 bg-base-content p-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <div className="relative h-44 w-full overflow-hidden rounded-xl">
         <Image
           src={
@@ -22,7 +22,7 @@ const TutorCard = ({ tutor }) => {
       </div>
 
       <div className="mt-3">
-        <h2 className="line-clamp-1 text-xl font-bold text-black">
+        <h2 className="line-clamp-1 text-xl font-bold">
           {tutor?.name || "Unknown Tutor"}
         </h2>
 
@@ -30,7 +30,7 @@ const TutorCard = ({ tutor }) => {
           {tutor?.subject}
         </p>
 
-        <div className="mt-3 space-y-1.5 text-sm text-black">
+        <div className="mt-3 space-y-1.5 text-sm ">
           <p>
             <span className="font-semibold">Available:</span>{" "}
             {tutor?.availableTime}
