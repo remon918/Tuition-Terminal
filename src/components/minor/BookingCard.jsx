@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { X } from "lucide-react";
 import { authClient, useSession } from "@/lib/auth-client";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const BookingCard = ({ tutor }) => {
   const [open, setOpen] = useState(false);
@@ -75,6 +75,7 @@ const BookingCard = ({ tutor }) => {
 
       toast.error(error.message || "Booking failed");
     }
+    redirect("/my-booked-session")
   };
 
   return (

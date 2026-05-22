@@ -30,7 +30,9 @@ const Delete = ({ id }) => {
       error: "Delete failed",
     });
 
-    await deletePromise;
+    const res = await deletePromise;
+
+    if (!res.ok) return;
 
     setOpen(false);
 
@@ -41,7 +43,7 @@ const Delete = ({ id }) => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="text-red-500 transition hover:scale-110"
+        className="text-red-500 transition hover:scale-110 cursor-pointer"
       >
         <Trash2 size={18} />
       </button>

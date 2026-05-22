@@ -18,7 +18,7 @@ const MyTutorsPage = async () => {
     },
   });
 
-  const addtutors = await res.json();
+  const addtutors = res.ok ? await res.json() : [];
 
   return (
     <div className="min-h-screen px-4 py-8">
@@ -65,43 +65,60 @@ const MyTutorsPage = async () => {
           </thead>
 
           <tbody>
-            {addtutors.map((tutor) => (
-              <tr key={tutor._id} className="border-b border-base-300">
-                <td className="py-4 whitespace-nowrap text-base-content">
-                  {tutor.tutorName}
-                </td>
-
-                <td className="py-4 whitespace-nowrap text-base-content">
-                  {tutor.subject}
-                </td>
-
-                <td className="py-4 whitespace-nowrap text-base-content">
-                  {tutor.availableTime}
-                </td>
-
-                <td className="py-4 whitespace-nowrap text-base-content">
-                  ৳{tutor.hourlyRate}
-                </td>
-
-                <td className="py-4 whitespace-nowrap">
-                  <span className="rounded-md bg-green-500/10 px-3 py-1 text-sm text-green-500">
-                    {tutor.availableSlots}
-                  </span>
-                </td>
-
-                <td className="py-4 whitespace-nowrap text-base-content">
-                  {tutor.registrationDate}
-                </td>
-
-                <td className="py-4 whitespace-nowrap">
-                  <div className="flex justify-end gap-4">
-                    <Delete id={tutor?._id} />
-
-                    <Edit tutor={tutor} />
-                  </div>
+            {addtutors.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={7}
+                  className="py-10 text-center text-base-content/70"
+                >
+                  No Tutors Added Yet
                 </td>
               </tr>
-            ))}
+            ) : (
+              addtutors.map((tutor) => (
+                <tr key={tutor._id} className="border-b border-base-300">
+                  <td className="py-4 whitespace-nowrap text-base-content">
+                    {tutor.tutorName || "Not Provided"}
+                  </td>
+
+                  <td className="py-4 whitespace-nowrap text-base-content">
+                    {tutor.subject || "Not Provided"}
+                  </td>
+
+                  <td className="py-4 whitespace-nowrap text-base-content">
+                   {tutor.availableTime || "Not Provided"}
+                  </td>
+
+                  <td className="py-4 whitespace-nowrap text-base-content">
+                    ৳{tutor.hourlyRate || 0}
+                  </td>
+
+                  <td className="py-4 whitespace-nowrap">
+                    <span
+                      className={`rounded-md px-3 py-1 text-sm ${
+                        Number(tutor.availableSlots) === 0
+                          ? "bg-red-500/10 text-red-500"
+                          : "bg-green-500/10 text-green-500"
+                      }`}
+                    >
+                      {tutor.availableSlots || 0}
+                    </span>
+                  </td>
+
+                  <td className="py-4 whitespace-nowrap text-base-content">
+                    {tutor.registrationDate || "Not Provided"}
+                  </td>
+
+                  <td className="py-4 whitespace-nowrap">
+                    <div className="flex justify-end gap-4">
+                      <Delete id={tutor?._id} />
+
+                      <Edit tutor={tutor} />
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

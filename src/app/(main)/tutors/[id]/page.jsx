@@ -32,6 +32,14 @@ const TutorDetailsPage = async ({ params }) => {
 
   const tutor = await fetchTutorDetails(id, token);
 
+  if (!tutor?._id) {
+    return (
+      <div className="py-20 text-center text-2xl font-bold">
+        Tutor Not Found
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen px-4 py-10">
       <div className="mx-auto max-w-6xl overflow-hidden rounded-[32px] border border-gray-200 shadow-xl">
@@ -39,8 +47,14 @@ const TutorDetailsPage = async ({ params }) => {
           <div className="relative flex items-center justify-center p-5 lg:p-8">
             <div className="relative h-65 w-full overflow-hidden rounded-[28px] sm:h-80 lg:h-130">
               <Image
-                src={tutor?.image}
-                alt={tutor?.name}
+                src={
+                  tutor?.image &&
+                  (tutor.image.startsWith("http://") ||
+                    tutor.image.startsWith("https://"))
+                    ? tutor.image
+                    : "/placeholder.jpg"
+                }
+                alt={tutor?.name || "Tutor"}
                 fill
                 className="object-cover"
               />
@@ -68,7 +82,7 @@ const TutorDetailsPage = async ({ params }) => {
               </p>
 
               <h1 className="text-4xl font-bold text-gray-900">
-                {tutor?.name}
+                {tutor?.name || "Tutor"}
               </h1>
 
               <p className="mt-2 text-lg text-teal-500">{tutor?.subject}</p>
@@ -79,7 +93,9 @@ const TutorDetailsPage = async ({ params }) => {
                 <MdSchool className="mt-1 text-xl text-purple-600" />
                 <div>
                   <p className="font-semibold text-gray-800">Institution</p>
-                  <p className="text-gray-600">{tutor?.institution}</p>
+                  <p className="text-gray-600">
+                    {tutor?.institution || "Not Provided"}
+                  </p>
                 </div>
               </div>
 
@@ -87,7 +103,9 @@ const TutorDetailsPage = async ({ params }) => {
                 <MdOutlineModeEdit className="mt-1 text-xl text-purple-600" />
                 <div>
                   <p className="font-semibold text-gray-800">Experience</p>
-                  <p className="text-gray-600">{tutor?.experience}</p>
+                  <p className="text-gray-600">
+                    {tutor?.experience || "Not Provided"}
+                  </p>
                 </div>
               </div>
 
@@ -95,7 +113,9 @@ const TutorDetailsPage = async ({ params }) => {
                 <FaMapMarkerAlt className="mt-1 text-lg text-purple-600" />
                 <div>
                   <p className="font-semibold text-gray-800">Location</p>
-                  <p className="text-gray-600">{tutor?.location}</p>
+                  <p className="text-gray-600">
+                    {tutor?.location || "Not Provided"}
+                  </p>
                 </div>
               </div>
 
@@ -103,7 +123,9 @@ const TutorDetailsPage = async ({ params }) => {
                 <MdAccessTime className="mt-1 text-xl text-purple-600" />
                 <div>
                   <p className="font-semibold text-gray-800">Available Time</p>
-                  <p className="text-gray-600">{tutor?.availableTime}</p>
+                  <p className="text-gray-600">
+                    {tutor?.availableTime || "Not Provided"}
+                  </p>
                 </div>
               </div>
 
@@ -111,7 +133,7 @@ const TutorDetailsPage = async ({ params }) => {
                 <HiMiniCurrencyDollar className="mt-1 text-xl text-purple-600" />
                 <div>
                   <p className="font-semibold text-gray-800">Hourly Fee</p>
-                  <p className="text-gray-600">৳ {tutor?.hourlyRate}/hr</p>
+                  <p className="text-gray-600">৳ ৳ {tutor?.hourlyRate || 0}/hr</p>
                 </div>
               </div>
             </div>
@@ -127,10 +149,10 @@ const TutorDetailsPage = async ({ params }) => {
                       : "text-green-600"
                   }`}
                 >
-                  {tutor?.availableSlots} Slots Left
+                  {Number(tutor?.availableSlots)} Slots Left
                 </h3>
               </div>
-              {tutor?.availableSlots === 0 ? (
+              {Number(tutor?.availableSlots) === 0 ? (
                 <button className="mt-4 w-[40%]  rounded-lg  py-2.5 text-sm font-semibold transition-all duration-300 text-gray-300 border italic">
                   No Slot Available
                 </button>

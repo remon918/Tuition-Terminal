@@ -28,7 +28,7 @@ const BookedSession = async () => {
     },
   );
 
-  const data = await res.json();
+ const data = res.ok ? await res.json() : [];
 
   return (
     <div className="min-h-screen px-4 py-10">
@@ -77,7 +77,7 @@ const BookedSession = async () => {
               {data?.map((booking) => (
                 <tr key={booking._id} className="border-b border-base-300">
                   <td className="py-4 whitespace-nowrap text-base-content font-medium">
-                    {booking?.userName}
+                    {booking?.userName || "Unknown"}
                   </td>
 
                   <td className="py-4 whitespace-nowrap text-base-content">
@@ -85,11 +85,11 @@ const BookedSession = async () => {
                   </td>
 
                   <td className="py-4 whitespace-nowrap text-base-content">
-                    {booking?.tutorName}
+                    {booking?.tutorName || "Unknown"}
                   </td>
 
                   <td className="py-4 whitespace-nowrap text-base-content">
-                    {booking?.email}
+                    {booking?.email || "Not Provided"}
                   </td>
 
                   <td className="py-4 whitespace-nowrap">
@@ -106,7 +106,7 @@ const BookedSession = async () => {
 
                   <td className="py-4 whitespace-nowrap">
                     <div className="flex justify-end">
-                      <CancelButton id={booking._id} />
+                      <CancelButton id={booking._id} status={booking?.status} />
                     </div>
                   </td>
                 </tr>

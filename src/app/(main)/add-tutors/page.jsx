@@ -1,7 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaExternalLinkSquareAlt } from "react-icons/fa";
 
@@ -10,6 +10,7 @@ const subjects = ["Mathematics", "Physics", "Chemistry", "Biology", "English"];
 const teachingModes = ["Online", "Offline", "Both"];
 
 const AddTutorPage = () => {
+  const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,6 +23,20 @@ const AddTutorPage = () => {
       month: "long",
       year: "numeric",
     });
+
+    tutorData.rating = 4.9;
+
+    tutorData.students = 0;
+
+    tutorData.hourlyRate = Number(tutorData.hourlyRate);
+
+    tutorData.availableSlots = Number(tutorData.availableSlots);
+
+    const { data: session } = await authClient.getSession();
+
+    tutorData.userEmail = session?.user?.email;
+
+    tutorData.userId = session?.user?.id;
 
     const { data: tokenData } = await authClient.token();
     console.log(tokenData);
@@ -47,10 +62,13 @@ const AddTutorPage = () => {
     const res = await submitPromise;
     const data = await res.json();
 
-    console.log(data);
+    // console.log(data);
 
-    e.target.reset();
-    redirect("/my-tutors");
+    if (!res.ok) return;
+
+    router.push("/my-tutors");
+
+    router.refresh();
   };
 
   return (
@@ -102,7 +120,7 @@ const AddTutorPage = () => {
               name="subject"
               className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-base-content outline-none transition focus:border-primary"
             >
-              <option>Select Subject</option>
+              <option value="">Select Subject</option>
 
               {subjects.map((subject) => (
                 <option key={subject}>{subject}</option>
@@ -156,7 +174,7 @@ const AddTutorPage = () => {
 
             <input
               type="date"
-              name="sessionStartDate"
+              name="seasonStartDate"
               className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-base-content outline-none transition focus:border-primary"
             />
           </div>
@@ -205,10 +223,10 @@ const AddTutorPage = () => {
             </label>
 
             <select
-              name="teachingMode"
+              name="mode"
               className="h-11 w-full rounded-md border border-base-300 bg-base-100 px-3 text-sm text-base-content outline-none transition focus:border-primary"
             >
-              <option>Select Mode</option>
+              <option value="">Select Mode</option>
 
               {teachingModes.map((mode) => (
                 <option key={mode}>{mode}</option>

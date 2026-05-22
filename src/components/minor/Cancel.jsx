@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 
-const CancelButton = ({ id }) => {
+const CancelButton = ({ id, status }) => {
   const router = useRouter();
 
   const handleCancel = async () => {
@@ -31,10 +31,22 @@ const CancelButton = ({ id }) => {
 
   return (
     <button
+      disabled={status === "Cancelled"}
       onClick={handleCancel}
-      className="flex h-10 w-10 items-center justify-center rounded-xl border border-base-300 transition hover:border-red-200 hover:bg-red-50 dark:hover:bg-red-500/10"
+      className={`flex h-10 w-10 items-center justify-center rounded-xl border transition ${
+        status === "Cancelled"
+          ? "cursor-not-allowed border-base-300 opacity-40"
+          : "cursor-pointer border-base-300 hover:border-red-200 hover:bg-red-50 dark:hover:bg-red-500/10"
+      }`}
     >
-      <X size={18} className="text-base-content/60 hover:text-red-500" />
+      <X
+        size={18}
+        className={`${
+          status === "Cancelled"
+            ? "text-base-content/40"
+            : "text-base-content/60 hover:text-red-500"
+        }`}
+      />
     </button>
   );
 };

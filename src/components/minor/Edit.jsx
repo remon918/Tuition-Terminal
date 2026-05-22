@@ -23,13 +23,16 @@ const Edit = ({ tutor }) => {
     institution,
     experience,
     location,
-    teachingMode,
+    mode,
     registrationDate,
   } = tutor;
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const tutor = Object.fromEntries(formData.entries());
+    tutor.hourlyRate = Number(tutor.hourlyRate);
+
+    tutor.availableSlots = Number(tutor.availableSlots);
     console.log(tutor);
 
     const { data: tokenData } = await authClient.token();
@@ -54,6 +57,7 @@ const Edit = ({ tutor }) => {
     });
 
     const res = await submitPromise;
+    if (!res.ok) return;
     const data = await res.json();
 
     console.log(data);
@@ -69,7 +73,7 @@ const Edit = ({ tutor }) => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="text-green-500 transition hover:scale-110"
+        className="text-green-500 transition hover:scale-110 cursor-pointer"
       >
         <Pencil size={18} />
       </button>
@@ -172,8 +176,8 @@ const Edit = ({ tutor }) => {
                 </label>
 
                 <select
-                  defaultValue={teachingMode}
-                  name="teachingMode"
+                  defaultValue={mode}
+                  name="mode"
                   className="h-11 w-full rounded-xl border border-base-300 bg-base-200 px-4 text-sm text-base-content outline-none transition focus:border-primary"
                 >
                   <option>Online</option>
